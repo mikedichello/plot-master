@@ -6,6 +6,7 @@ const db = mongoose.connection;
 
 //ENVIRONMENT VARIABLES
 const PORT = process.env.PORT || 3000;
+const apiKey = process.env.apiKey;
 
 //ERROR/DISCONNECTION
 db.on('error', err => console.log(err.message + 'is Mongod not running?'))
