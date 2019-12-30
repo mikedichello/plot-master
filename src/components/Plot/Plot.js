@@ -5,7 +5,8 @@ import './Plot.css'
 class Plot extends React.Component {
 
   state = {
-      
+    
+    plots:[],
     plotPlants: [],
     plantList: [],
     height:0,
@@ -17,11 +18,11 @@ class Plot extends React.Component {
 
 
 componentDidMount = () => {
-  fetch('/plot')
+  fetch('/plots')
   .then(response =>  response.json())
-  .then(plotPlants => 
+  .then(plots => 
       this.setState({
-          plotPlants: plotPlants
+          plots: plots
       })
   );
 }
@@ -52,24 +53,37 @@ deletePlot=(event)=>{
   })
 }
 
-makeGrid = (event) => {
+newPlot = (event) => {
   event.preventDefault();
-let divs=[];
-let grid=[];
-for(let i = 1; i<=(this.state.height*this.state.width); i++) {
-    divs.push(i)
-}  
-  grid = divs.map((id) => {
-  return (<div onClick={this.plotSelection} id = {id} className='plot' style={{width:'50px', height:'50px', backgroundColor:'brown'}}></div>)
-});
-this.setState({
-    grid:<div>
-              <div className='container2' style={{width: (this.state.width*50)}}>{grid}</div>
-              <button onClick={this.deletePlot}>
-                  Delete Plot
-              </button>
-          </div>
-})
+  let subPlots=[];
+  for(let i = 1; i<=(this.state.height*this.state.width); i++) {
+    subPlots.push({
+      height: '50px', 
+      width: '50px', 
+      background: 'brown',
+      plantName: null,
+      plantDescription: null,
+      harvestTime: null,
+      plantingTime: null})
+  };
+  fetch('/plots', {
+    body:JSON.stringify({height: this.state.height, width: this.state.width, subPlot:subPlots}),
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+
+  }).then(createdPlot => {
+    return createdPlot.json
+  }).then(jsonedPlot => {
+    this.setState({
+      height: 0,
+      width: 0,
+      plots: [...this.state.plots, jsonedPlot]
+    })
+  })
+
 }
 
 render() {
@@ -77,18 +91,34 @@ render() {
   return (
       <div>
       <h2>My Plot</h2>
-      <form onSubmit={this.makeGrid}>
+      <form onSubmit={this.newPlot}>
           <label htmlFor='height'>Height</label>
-          <input type='number' value={this.state.height} onChange={this.handleChange} id='height' />
+          <input type='number' 
+                 value={this.state.height} 
+                 onChange={this.handleChange} 
+                 id='height' />
           <label htmlFor='width'>Width</label>
-          <input type='number' value={this.state.width} onChange={this.handleChange} id='width' />
+          <input type='number' 
+                 value={this.state.width} 
+                 onChange={this.handleChange} 
+                 id='width' />
           <input type='submit' />
       </form>
-      
-        {this.state.grid}
-        <div onClick={this.plantSelection} className='draggable' style={{backgroundColor:'orange'}}>
-
-        </div>
+      {this.state.plots.map((plot,index)=> {
+        return(
+          <div className='plot' style={{width:plot.width*50}}> 
+              {plot.subPlot.map((subplot,index)=> {
+                return (
+                  <div style={{width:subplot.width, 
+                              height:subplot.height,
+                              backgroundColor:subplot.background}}>
+                  </div>
+                )
+              })}
+          </div>
+        )
+      })}
+        
 
       </div>
   )
