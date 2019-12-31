@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
-import App from './components/App';
-import Home from './components/Home';
+import Home from './Home';
+import Garden from './Garden';
 
-class MainRouter extends React.Component {
+class MainRouter extends Component {
 	state = {};
 	render() {
 		return (
 			<div>
 				<HashRouter>
-					Hello Router!
 					<nav className="navbar-light bg-light row">
 						<NavLink to="/" className="nav-item m-2">
 							Home
@@ -28,8 +27,8 @@ class MainRouter extends React.Component {
 							Login
 						</NavLink>
 					</nav>
-					<Route path="/" component={Home} />
-					<Route path="/my-garden" component={App} />
+					<Route exact path="/" component={Home} />
+					<Route path="/my-garden" component={Garden} />
 				</HashRouter>
 			</div>
 		);

@@ -1,6 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MainRouter from '../Router';
+import React, { Component } from 'react';
 
 export default class App extends Component {
 	render() {
