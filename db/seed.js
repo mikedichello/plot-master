@@ -12,11 +12,11 @@ Plots.deleteMany({})
     .then(() => {
         return Plots.collection.insertMany(PlotSeeds);
     })
-    .then(() => {
-        Crops.deleteMany({})
-    .then(() => {
-        return Crops.collection.insertMany(CropSeeds);
-    })
+    // .then(() => {
+    //     Crops.deleteMany({})
+    // .then(() => {
+    //     return Crops.collection.insertMany(CropSeeds);
+    // })
     .then(() => {
         process.exit();
     });
