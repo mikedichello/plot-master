@@ -33,6 +33,8 @@ handleChange = (event) =>{
 
 plantSelection=(event)=>{
   event.preventDefault();
+
+  fetch('plots/' + id)
   console.log(event.target.style.backgroundColor)
   this.state.currentPlot.style.backgroundColor=event.target.style.backgroundColor
 
@@ -40,17 +42,23 @@ plantSelection=(event)=>{
 
 plotSelection=(event)=>{
   event.preventDefault();
-  console.log(event.target.style.backgroundColor)
   this.setState({
       currentPlot:event.target
   })
 }
 
-deletePlot=(event)=>{
-  event.preventDefault()
-  this.setState({
-      grid:[]
-  })
+deletePlot=(id,event)=>{
+  fetch('plots/' + id, {
+    method: "DELETE"
+}).then(data => {
+    this.setState({
+        plots: [
+            ...this.state.plots.slice(0, index),
+            ...this.state.plots.slice(index + 1)
+        ]
+    })
+})
+}
 }
 
 newPlot = (event) => {
@@ -58,6 +66,7 @@ newPlot = (event) => {
   let subPlots=[];
   for(let i = 1; i<=(this.state.height*this.state.width); i++) {
     subPlots.push({
+      key: i,
       height: '50px', 
       width: '50px', 
       background: 'brown',
