@@ -1,19 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainRouter from '../Router';
-import Home from './Home';
 
-class App extends React.Component {
+export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<MainRouter />
-				<Home />
+				<p>This is App</p>
 			</div>
 		);
 	}
 }
-
-const app = document.getElementById('app');
-
-ReactDOM.render(<App />, app);

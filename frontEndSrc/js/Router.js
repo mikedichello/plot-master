@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
 import App from './components/App';
+import Home from './components/Home';
 
 class MainRouter extends React.Component {
 	state = {};
@@ -27,11 +28,14 @@ class MainRouter extends React.Component {
 							Login
 						</NavLink>
 					</nav>
-					<Route path="/" component={App} />
+					<Route path="/" component={Home} />
+					<Route path="/my-garden" component={App} />
 				</HashRouter>
 			</div>
 		);
 	}
 }
 
-export default MainRouter;
+const app = document.getElementById('app');
+
+ReactDOM.render(<MainRouter />, app);
