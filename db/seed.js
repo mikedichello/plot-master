@@ -1,5 +1,7 @@
 const Plots = require('../models/Plots.js');
-const data = require('./seeds.json');
+const Crops = require('../models/Crops.js');
+const PlotSeeds = require('./PlotSeeds.json');
+const CropSeeds = require('./CropSeeds.json');
 const mongoose = require('./connection.js');
 
 mongoose.connection.once('open', () => {
@@ -8,7 +10,12 @@ mongoose.connection.once('open', () => {
 
 Plots.deleteMany({})
     .then(() => {
-        return Plots.collection.insertMany(data);
+        return Plots.collection.insertMany(PlotSeeds);
+    })
+    .then(() => {
+        Crops.deleteMany({})
+    .then(() => {
+        return Crops.collection.insertMany(CropSeeds);
     })
     .then(() => {
         process.exit();

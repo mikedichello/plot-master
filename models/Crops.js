@@ -1,11 +1,11 @@
 const mongoose = require('../db/connection')
 
-const PlantSchema = new mongoose.Schema({
+const CropSchema = new mongoose.Schema({
     name: String,
     harvestTime: String,
     plantingTime: String,
 })
 
-mongoose.model('Plants', PlantSchema)
+mongoose.model('Crops', CropSchema)
 
 module.exports = mongoose
