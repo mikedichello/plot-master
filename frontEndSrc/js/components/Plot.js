@@ -81,7 +81,7 @@ export default class Plot extends Component {
 			},
 		})
 			.then(createdPlot => {
-				return createdPlot.json;
+				return createdPlot.json();
 			})
 			.then(jsonedPlot => {
 				this.setState({
