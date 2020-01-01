@@ -5,6 +5,7 @@ import Home from './Home';
 import Garden from './Garden';
 import Plot from './Plot';
 import ViewAllPlants from './ViewAllPlants';
+import PlantChart from './PlantChart';
 
 class MainRouter extends Component {
 	state = {};
@@ -22,6 +23,9 @@ class MainRouter extends Component {
 						<NavLink to="/my-garden-plot" className="nav-item m-2">
 							My Garden Plot
 						</NavLink>
+						<NavLink to="/plant-chart" className="nav-item m-2">
+							Plant Chart
+						</NavLink>
 						<NavLink to="/view-all-plants" className="nav-item m-2">
 							View All Plants
 						</NavLink>
@@ -32,6 +36,7 @@ class MainRouter extends Component {
 					<Route exact path="/" component={Home} />
 					<Route path="/my-garden" component={Garden} />
 					<Route path="/my-garden-plot" component={Plot} />
+					<Route path="/plant-chart" component={PlantChart} />
 					<Route path="/view-all-plants" component={ViewAllPlants} />
 				</HashRouter>
 			</div>
