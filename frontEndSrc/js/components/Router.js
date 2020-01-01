@@ -4,6 +4,7 @@ import { HashRouter, NavLink, Route } from 'react-router-dom';
 import Home from './Home';
 import Garden from './Garden';
 import Plot from './Plot';
+import ViewAllPlants from './ViewAllPlants';
 
 class MainRouter extends Component {
 	state = {};
@@ -21,8 +22,8 @@ class MainRouter extends Component {
 						<NavLink to="/my-garden-plot" className="nav-item m-2">
 							My Garden Plot
 						</NavLink>
-						<NavLink to="/plant-listing" className="nav-item m-2">
-							Plant Listing
+						<NavLink to="/view-all-plants" className="nav-item m-2">
+							View All Plants
 						</NavLink>
 						<NavLink to="/login" className="nav-item m-2">
 							Login
@@ -31,6 +32,7 @@ class MainRouter extends Component {
 					<Route exact path="/" component={Home} />
 					<Route path="/my-garden" component={Garden} />
 					<Route path="/my-garden-plot" component={Plot} />
+					<Route path="/view-all-plants" component={ViewAllPlants} />
 				</HashRouter>
 			</div>
 		);
