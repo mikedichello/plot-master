@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './Plot.css';
 
-class Plot extends React.Component {
+export default class Plot extends Component {
 	state = {
 		plots: [],
 		plotPlants: [],
@@ -12,8 +11,7 @@ class Plot extends React.Component {
 		currentPlot: [],
 		plotBackground: 'brown',
 	};
-
-	componentDidMount = () => {
+	omponentDidMount = () => {
 		fetch('/plots')
 			.then(response => response.json())
 			.then(plots =>
@@ -55,7 +53,6 @@ class Plot extends React.Component {
 			});
 		});
 	};
-
 	newPlot = event => {
 		event.preventDefault();
 		let subPlots = [];
@@ -94,7 +91,6 @@ class Plot extends React.Component {
 				});
 			});
 	};
-
 	render() {
 		return (
 			<div>
@@ -137,5 +133,3 @@ class Plot extends React.Component {
 		);
 	}
 }
-
-export default Plot;
