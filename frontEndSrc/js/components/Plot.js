@@ -12,7 +12,7 @@ export default class Plot extends Component {
 		plotBackground: 'brown',
 	};
 	omponentDidMount = () => {
-		fetch('/plots')
+		fetch('/api/plots')
 			.then(response => response.json())
 			.then(plots =>
 				this.setState({
@@ -28,7 +28,7 @@ export default class Plot extends Component {
 	plantSelection = event => {
 		event.preventDefault();
 
-		fetch('plots/' + id);
+		fetch('/api/plots/' + id);
 		console.log(event.target.style.backgroundColor);
 		this.state.currentPlot.style.backgroundColor =
 			event.target.style.backgroundColor;
@@ -42,7 +42,7 @@ export default class Plot extends Component {
 	};
 
 	deletePlot = (id, event) => {
-		fetch('plots/' + id, {
+		fetch('/api/plots/' + id, {
 			method: 'DELETE',
 		}).then(data => {
 			this.setState({
@@ -68,7 +68,7 @@ export default class Plot extends Component {
 				plantingTime: null,
 			});
 		}
-		fetch('/plots', {
+		fetch('/api/plots', {
 			body: JSON.stringify({
 				height: this.state.height,
 				width: this.state.width,

@@ -6,7 +6,7 @@ const db = mongoose.connection;
 
 // Environment Variables
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/plots';
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 // Connect to Mongo
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () =>
@@ -21,20 +21,8 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.urlencoded({ extended: false })); // extended: false - does not allow nested objects in query strings
 app.use(express.json()); // returns middleware that only parses JSON
 
-app.use(express.static('public'));
-
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
-	);
-	next();
-});
-
 // Routes
-const todosController = require('./backEndSrc/controllers/plots.js');
+const todosController = require('./backendSrc/controllers/plots.js');
 app.use('/api/plots', todosController);
 
 // this will catch any route that doesn't exist
