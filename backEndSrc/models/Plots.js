@@ -1,4 +1,4 @@
-const mongoose = require('../db/connection');
+const mongoose = require('mongoose');
 
 const PlotSchema = new mongoose.Schema({
 	height: Number,

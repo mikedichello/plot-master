@@ -4,14 +4,14 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "gulp build",
-		"dev:webpack": "webpack --mode development --env.NODE_ENV=dev",
-		"build:webpack": "webpack --mode production --env.NODE_ENV=production",
 		"watch": "gulp",
-		"proxy": "gulp watch-proxy",
-		"deployment": "node deploymentStart.js && node backendSrc/apiServer.js",
-		"dev": "npm run watch && nodemon backendSrc/apiServer.js"
+		"build": "gulp build",
+		"prod:simulation": "gulp production",
+		"start": "node deploymentStart.js",
+		"dev:webpack": "webpack --mode development --env.NODE_ENV=dev",
+		"dev:serve": "nodemon apiDevServer.js",
+		"styles": "gulp styles",
+		"build:webpack": "webpack --mode production --env.NODE_ENV=production"
 	},
 	"author": "",
 	"license": "ISC",
