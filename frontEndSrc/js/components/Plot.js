@@ -8,7 +8,9 @@ export default class Plot extends Component {
 		height: 0,
 		width: 0,
 		grid: [],
-		currentPlot: [],
+		currentSubplot: [],
+		currentSubplotId:[],
+		currentPlotId:[],
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -25,26 +27,45 @@ export default class Plot extends Component {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	plantSelection = event => {
+	plantSelection = (event) => {
 		event.preventDefault();
-
-		fetch('/api/plots/' + id);
-		console.log(event.target.style.backgroundColor);
-		this.state.currentPlot.style.backgroundColor =
-			event.target.style.backgroundColor;
+		let plot = this.state.plots[this.state.currentPlotId]
+		console.log(plot)
+		plot.subPlot[this.state.currentSubplotId].background=event.target.style.backgroundColor
+		fetch('/api/plots/' + plot._id, {
+			body:JSON.stringify({subPlot:plot.subPlot}),
+			method: 'PUT',
+			headers: {
+				'Accept': 'application/json, text/plain, */*',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(updatedPlot=>updatedPlot.json())
+		.then(jsonedPlot=> {
+			fetch('/api/plots/')
+			.then(response=>response.json())
+			.then(plots => {
+				this.setState({plots:plots, currentSubplot:[],currentPlotId:[],currentSubplotId:[]})
+			})
+		})
 	};
 
-	plotSelection = event => {
+	plotSelection = (event) => {
 		event.preventDefault();
 		console.log(event.target.id)
+		console.log(this.state.currentSubplot)
 		
 		this.setState({
-			currentPlot: event.target
+			currentSubplot: event.target,
+			currentSubplotId: event.target.id
 		});
 	};
 
-	bigPlot = event => {
-		console.log('big plot clicked')
+	bigPlot = (index) => {
+
+		this.setState({
+			currentPlotId: index
+		});
 	}
 
 	deletePlot = (id, index) => {
@@ -68,7 +89,7 @@ export default class Plot extends Component {
 				key: i,
 				height: '50px',
 				width: '50px',
-				background: 'brown',
+				background: this.state.plotBackground,
 				plantName: null,
 				plantDescription: null,
 				harvestTime: null,
@@ -121,11 +142,11 @@ export default class Plot extends Component {
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
-						<div className="plot" onClick={()=>this.bigPlot(index)} key={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
+						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
-										onClick={this.plotSelection}
+										onClick={this.state.currentSubplot.length===0 ? this.plotSelection : this.plantSelection }
 										id={subplot.key}
 										style={{
 											width: subplot.width,
@@ -136,7 +157,7 @@ export default class Plot extends Component {
 								);
 							})}
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
-							<div style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
+							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 						</div>
 					);
 				})}
