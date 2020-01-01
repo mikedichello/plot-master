@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Plots = require('../models/Plot');
+const Plots = require('../models/Plots');
 
 //READ
 router.get('/', (req, res) => {
