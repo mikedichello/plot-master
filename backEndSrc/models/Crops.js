@@ -1,4 +1,4 @@
-const mongoose = require('../db/connection');
+const mongoose = require('mongoose');
 
 const CropSchema = new mongoose.Schema({
 	name: String,
@@ -6,6 +6,6 @@ const CropSchema = new mongoose.Schema({
 	plantingTime: String,
 });
 
-mongoose.model('Crops', CropSchema);
+const Crops = mongoose.model('Crop', CropSchema);
 
-module.exports = mongoose;
+module.exports = Crops;
