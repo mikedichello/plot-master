@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
 import Home from './Home';
 import Garden from './Garden';
+import Plot from './Plot';
 
 class MainRouter extends Component {
 	state = {};
@@ -29,6 +30,7 @@ class MainRouter extends Component {
 					</nav>
 					<Route exact path="/" component={Home} />
 					<Route path="/my-garden" component={Garden} />
+					<Route path="/my-garden-plot" component={Plot} />
 				</HashRouter>
 			</div>
 		);
