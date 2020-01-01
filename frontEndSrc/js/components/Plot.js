@@ -11,12 +11,12 @@ export default class Plot extends Component {
 		currentPlot: [],
 		plotBackground: 'brown',
 	};
-	omponentDidMount = () => {
+	componentDidMount = () => {
 		fetch('/api/plots')
 			.then(response => response.json())
 			.then(plots =>
 				this.setState({
-					plots: plots,
+					plots: plots
 				})
 			);
 	};
@@ -36,12 +36,18 @@ export default class Plot extends Component {
 
 	plotSelection = event => {
 		event.preventDefault();
+		console.log(event.target.id)
+		
 		this.setState({
-			currentPlot: event.target,
+			currentPlot: event.target
 		});
 	};
 
-	deletePlot = (id, event) => {
+	bigPlot = event => {
+		console.log('big plot clicked')
+	}
+
+	deletePlot = (id, index) => {
 		fetch('/api/plots/' + id, {
 			method: 'DELETE',
 		}).then(data => {
@@ -52,11 +58,12 @@ export default class Plot extends Component {
 				],
 			});
 		});
+	
 	};
 	newPlot = event => {
 		event.preventDefault();
 		let subPlots = [];
-		for (let i = 1; i <= this.state.height * this.state.width; i++) {
+		for (let i = 0; i < this.state.height * this.state.width; i++) {
 			subPlots.push({
 				key: i,
 				height: '50px',
@@ -114,10 +121,12 @@ export default class Plot extends Component {
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
-						<div className="plot" style={{ width: plot.width * 50 }}>
+						<div className="plot" onClick={()=>this.bigPlot(index)} key={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
+										onClick={this.plotSelection}
+										id={subplot.key}
 										style={{
 											width: subplot.width,
 											height: subplot.height,
@@ -126,6 +135,8 @@ export default class Plot extends Component {
 									></div>
 								);
 							})}
+							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
+							<div style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 						</div>
 					);
 				})}
