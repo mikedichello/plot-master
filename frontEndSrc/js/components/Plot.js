@@ -3,20 +3,19 @@ import React, { Component } from 'react';
 export default class Plot extends Component {
 	state = {
 		plots: [],
-		plotPlants: [],
-		plantList: [],
 		height: 0,
 		width: 0,
-		grid: [],
-		currentPlot: [],
+		currentSubplot: [],
+		currentSubplotId:[],
+		currentPlotId:[],
 		plotBackground: 'brown',
 	};
-	omponentDidMount = () => {
+	componentDidMount = () => {
 		fetch('/api/plots')
 			.then(response => response.json())
 			.then(plots =>
 				this.setState({
-					plots: plots,
+					plots: plots
 				})
 			);
 	};
@@ -25,23 +24,48 @@ export default class Plot extends Component {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	plantSelection = event => {
+	plantSelection = (event) => {
 		event.preventDefault();
-
-		fetch('/api/plots/' + id);
-		console.log(event.target.style.backgroundColor);
-		this.state.currentPlot.style.backgroundColor =
-			event.target.style.backgroundColor;
+		let plot = this.state.plots[this.state.currentPlotId]
+		console.log(plot)
+		plot.subPlot[this.state.currentSubplotId].background=event.target.style.backgroundColor
+		fetch('/api/plots/' + plot._id, {
+			body:JSON.stringify({subPlot:plot.subPlot}),
+			method: 'PUT',
+			headers: {
+				'Accept': 'application/json, text/plain, */*',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(updatedPlot=>updatedPlot.json())
+		.then(jsonedPlot=> {
+			fetch('/api/plots/')
+			.then(response=>response.json())
+			.then(plots => {
+				this.setState({plots:plots, currentSubplot:[],currentPlotId:[],currentSubplotId:[]})
+			})
+		})
 	};
 
-	plotSelection = event => {
+	plotSelection = (event) => {
 		event.preventDefault();
+		console.log(event.target.id)
+		console.log(this.state.currentSubplot)
+		
 		this.setState({
-			currentPlot: event.target,
+			currentSubplot: event.target,
+			currentSubplotId: event.target.id
 		});
 	};
 
-	deletePlot = (id, event) => {
+	bigPlot = (index) => {
+
+		this.setState({
+			currentPlotId: index
+		});
+	}
+
+	deletePlot = (id, index) => {
 		fetch('/api/plots/' + id, {
 			method: 'DELETE',
 		}).then(data => {
@@ -52,16 +76,17 @@ export default class Plot extends Component {
 				],
 			});
 		});
+	
 	};
 	newPlot = event => {
 		event.preventDefault();
 		let subPlots = [];
-		for (let i = 1; i <= this.state.height * this.state.width; i++) {
+		for (let i = 0; i < this.state.height * this.state.width; i++) {
 			subPlots.push({
 				key: i,
 				height: '50px',
 				width: '50px',
-				background: 'brown',
+				background: this.state.plotBackground,
 				plantName: null,
 				plantDescription: null,
 				harvestTime: null,
@@ -114,10 +139,13 @@ export default class Plot extends Component {
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
-						<div className="plot" style={{ width: plot.width * 50 }}>
+						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
+										className="subplot"
+										onClick={this.state.currentSubplot.length===0 ? this.plotSelection : this.plantSelection }
+										id={subplot.key}
 										style={{
 											width: subplot.width,
 											height: subplot.height,
@@ -126,6 +154,19 @@ export default class Plot extends Component {
 									></div>
 								);
 							})}
+							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
+							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
+							<div className='plantInfo'>
+								{this.state.currentSubplot.length!== 0 ? 
+								(<ul>
+									<li>{this.state.currentSubplot.background}</li>
+									{/* <li>{this.state.currentSubplot.plantName}</li>
+									<li>{this.state.currentSubplot.plantDescription}</li>
+									<li>{this.state.currentSubplot.plantingTime}</li>
+									<li>{this.state.currentSubplot.harvestTime}</li> */}
+								</ul>)
+								:''}
+							</div>
 						</div>
 					);
 				})}
