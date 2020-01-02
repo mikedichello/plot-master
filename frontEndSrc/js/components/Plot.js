@@ -9,6 +9,7 @@ export default class Plot extends Component {
 		currentSubplotId:[],
 		currentPlotId:[],
 		currentPlot: [],
+		title:'title',
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -27,7 +28,7 @@ export default class Plot extends Component {
 
 	plantSelection = (event) => {
 		event.preventDefault();
-		let plot = this.state.currentPlot
+		let plot = this.state.plots[this.state.currentPlotId]
 		console.log(plot)
 		plot.subPlot[this.state.currentSubplotId].background=event.target.style.backgroundColor
 		fetch('/api/plots/' + plot._id, {
@@ -43,7 +44,7 @@ export default class Plot extends Component {
 			fetch('/api/plots/')
 			.then(response=>response.json())
 			.then(plots => {
-				this.setState({plots:plots, currentSubplot:[],currentSubplotId:[]})
+				this.setState({plots:plots, currentSubplot:[],currentPlotId:[],currentSubplotId:[]})
 			})
 		})
 	};
@@ -98,6 +99,7 @@ export default class Plot extends Component {
 			body: JSON.stringify({
 				height: this.state.height,
 				width: this.state.width,
+				title: this.state.title,
 				subPlot: subPlots,
 			}),
 			method: 'POST',
@@ -113,11 +115,10 @@ export default class Plot extends Component {
 				this.setState({
 					height: 0,
 					width: 0,
-					currentPlot: jsonedPlot,
+					title: "title",
 					plots: [...this.state.plots, jsonedPlot],
 				});
 			});
-			console.log(this.state.currentPlot)
 	};
 	render() {
 		return (
@@ -138,13 +139,19 @@ export default class Plot extends Component {
 						onChange={this.handleChange}
 						id="width"
 					/>
+					<input
+						type="text"
+						value={this.state.title}
+						onChange={this.handleChange}
+						id='title'
+						/>
 					<input type="submit" />
 				</form>
-				{/* {this.state.currentPlot.map((plot, index) => {
-					return ( */}
-					{this.state.currentPlot.length===1 ? 
-						<div className="plot" style={{ width: this.state.currentPlot.width * 50, display: "flex", flexWrap:"wrap"}}>
-							{this.state.currentPlot.subPlot.map((subplot, index) => {
+				{this.state.plots.map((plot, index) => {
+					return (
+						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
+							<h4>{plot.title}</h4>
+							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
 										className="subplot"
@@ -160,8 +167,20 @@ export default class Plot extends Component {
 							})}
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
-
-						</div> : '' }
+							<div className='plantInfo'>
+								{true ? 
+								(<ul>
+									<li>{this.state.currentSubplot.background}</li>
+									{/* <li>{this.state.currentSubplot.plantName}</li>
+									<li>{this.state.currentSubplot.plantDescription}</li>
+									<li>{this.state.currentSubplot.plantingTime}</li>
+									<li>{this.state.currentSubplot.harvestTime}</li> */}
+								</ul>)
+								:''}
+							</div>
+						</div>
+					);
+				})}
 			</div>
 		);
 	}

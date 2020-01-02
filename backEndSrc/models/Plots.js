@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const PlotSchema = new mongoose.Schema({
-	height: Number,
-	width: Number,
+	height: {type=Number, required=true},
+	width: {type=Number, required=true},
+	title: {type=String, required=true},
 	subPlot: [Object],
 });
 
