@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Crops from '../../../public/js/Crops.js'
 
-export default class PlantChart extends Component{
+export default class PlantingChart extends Component{
 		state = {
 			allPlants: Crops,
 		}
