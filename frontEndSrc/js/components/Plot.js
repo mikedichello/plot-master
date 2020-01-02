@@ -3,11 +3,8 @@ import React, { Component } from 'react';
 export default class Plot extends Component {
 	state = {
 		plots: [],
-		plotPlants: [],
-		plantList: [],
 		height: 0,
 		width: 0,
-		grid: [],
 		currentSubplot: [],
 		currentSubplotId:[],
 		currentPlotId:[],
@@ -146,6 +143,7 @@ export default class Plot extends Component {
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
+										className="subplot"
 										onClick={this.state.currentSubplot.length===0 ? this.plotSelection : this.plantSelection }
 										id={subplot.key}
 										style={{
@@ -158,6 +156,17 @@ export default class Plot extends Component {
 							})}
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
+							<div className='plantInfo'>
+								{this.state.currentSubplot.length!== 0 ? 
+								(<ul>
+									<li>{this.state.currentSubplot.background}</li>
+									{/* <li>{this.state.currentSubplot.plantName}</li>
+									<li>{this.state.currentSubplot.plantDescription}</li>
+									<li>{this.state.currentSubplot.plantingTime}</li>
+									<li>{this.state.currentSubplot.harvestTime}</li> */}
+								</ul>)
+								:''}
+							</div>
 						</div>
 					);
 				})}
