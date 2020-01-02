@@ -8,6 +8,7 @@ export default class Plot extends Component {
 		currentSubplot: [],
 		currentSubplotId:[],
 		currentPlotId:[],
+		currentPlot: [],
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -157,7 +158,7 @@ export default class Plot extends Component {
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 							<div className='plantInfo'>
-								{this.state.currentSubplot.length!== 0 ? 
+								{true ? 
 								(<ul>
 									<li>{this.state.currentSubplot.background}</li>
 									{/* <li>{this.state.currentSubplot.plantName}</li>
