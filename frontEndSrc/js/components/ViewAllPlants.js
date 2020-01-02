@@ -12,9 +12,9 @@ export default class ViewAllPlants extends Component {
 			<div>
 				<h1>View All Plants</h1>
 				<ul>
-					{this.state.allCrops.map((Crops, index) => {
+					{this.state.allCrops.map((crop, index) => {
 						return(
-							<li  onClick={() => this.setState({currentCrop: Crops})}>{Crops.name}</li>
+							<li  onClick={() => this.setState({currentCrop: crop})}>{crop.name}</li>
 						)
 					})}
 				</ul>
