@@ -13,3 +13,5 @@ const Crops = [
 		perennial: false, //false= annual true=perennial
 	},
 ];
+
+export default Crops

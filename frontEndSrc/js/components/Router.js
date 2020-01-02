@@ -6,6 +6,7 @@ import ViewAllPlots from './ViewAllPlots';
 import Plot from './Plot';
 import PlantReference from './PlantReference';
 
+
 class MainRouter extends Component {
 	state = {};
 	render() {
@@ -37,6 +38,7 @@ class MainRouter extends Component {
 					<Route path="/all-plots" component={ViewAllPlots} />
 					<Route path="/planting-chart" component={PlantingChart} />
 					<Route path="/plant-reference" component={PlantReference} />
+
 				</HashRouter>
 			</div>
 		);
