@@ -8,9 +8,11 @@ const Crops = [
         daysToMaturity: 70, //number of days (average) after transplant when plant can be harvested
         harvest: 'Pick regularly as soon as the fruits turn color but are still firm. Store at room temperature.', //harvest tips
         sunRequirement: 'Full-Sun', //Full-sun partial-sun shade
-        spacing: 20, //inches needed between plants
+        spacing: 24, //inches needed between plants
         companionPlants: ["Marigold", "Broccoli", "Chives", "Mint", "Borage", "Parsley", "Basil", "Pepper", "Asparagus", "Monarda", "Lettuce", "Garlic", "Dill", "Calendula"], //grows well near these plants
         perennial: false, //false= annual true=perennial
+        img: 'https://www.almanac.com/sites/default/files/image_nodes/tomatoes_helios4eos_gettyimages-edit.jpeg', //image of plant
+        icon: '' // icon of plant
     },
     {
         name: 'Basil',
@@ -21,9 +23,11 @@ const Crops = [
         daysToMaturity: 30,
         harvest: 'Harvest leaves a few at a time as you need them in the kitchen. In midsummer, cut plants back by half to stimulate new growth, and make big batches of pesto with the trimmings.', 
         sunRequirement: 'Full Sun', 
-        spacing: 8,
+        spacing: 12,
         companionPlants: ['Tomato', 'Pepper', 'Lettuce'],
         perennial: false, 
+        img: 'https://www.miraclegro.com/sites/g/files/oydgjc111/files/styles/scotts_asset_image_720_440/public/asset_images/basil1.png?itok=PsMbxblv', //image of plant
+        icon: '' // icon of plant
     },
     {
         name: 'Bell Peppers',
@@ -34,9 +38,11 @@ const Crops = [
         daysToMaturity: 75,
         harvest: 'Peppers can be harvested when they are still green, though their flavor improves as they ripen to red, yellow, or orange.', 
         sunRequirement: 'Full Sun', 
-        spacing: 14,
+        spacing: 12,
         companionPlants: ['Basil', "Marjoram", 'Oregano', 'Carrot', "Tomato", 'Borage','Dill'],
         perennial: false, 
+        img: 'https://q7i2y6d5.stackpathcdn.com/wp-content/uploads/2009/03/iStock-530253685-400x267.jpg', //image of plant
+        icon: '' // icon of plant
     },
     {
         name: 'Wild Garden Lettuce Mix',
@@ -50,6 +56,8 @@ const Crops = [
         spacing: 4,
         companionPlants: ["Garlic", "Beet", "Dill", 'Chives', 'Basil', 'Carrot', 'Strawberry', 'Radish', 'Spinach', 'Lettuce', 'Cabbage', 'Scallions', 'Onion' ],
         perennial: false, 
+        img: 'https://www.wildgardenseed.com/images/WildGardenLettuce.jpg', //image of plant
+        icon: '' // icon of plant
     },
     {
         name: 'Eggplant',
@@ -63,6 +71,9 @@ const Crops = [
         spacing: 16,
         companionPlants: ['Catnip', 'Marigold', 'Beans', 'Pepper'],
         perennial: false, 
+        img: 'https://s3.eu-west-2.amazonaws.com/growinginteractive/blog/eggplant-patio-baby-CREDIT-All-America-Selections-2x.jpg', //image of plant
+        icon: '' // icon of plant
+
     },
     {
         name: 'Carrot',
@@ -76,6 +87,8 @@ const Crops = [
         spacing: 4,
         companionPlants: ['Chives', 'Potatoes', 'Leek', 'Lettuce', 'Peas', 'Radish', 'Rosemary', 'Sage', 'Tomato', 'Onion'],
         perennial: false, 
+        img: 'https://www.promixgardening.com/sites/promix/files/inline-images/PromixGardening_How%20To%20Grow%20Carrots_03_1.jpg', //image of plant
+        icon: '' // icon of plant
     },
     {
         name: 'Sugar Snap Peas',
@@ -89,6 +102,38 @@ const Crops = [
         spacing: 4,
         companionPlants: ['Chives', 'Mint', 'Alyssum', 'Carrot', 'Corn', 'Cucumber', 'Radish', 'Turnip', 'Beans'],
         perennial: false, 
+        img: 'https://www.burpee.com/dw/image/v2/ABAQ_PRD/on/demandware.static/-/Sites-masterCatalog_Burpee/default/dwa65e45a7/Images/Product%20Images/prod000793/prod000793.jpg?sw=320&sh=378&sm=fit', //image of plant
+        icon: '' // icon of plant
+    },
+    {
+        name: 'Garlic',
+        description: 'Aromatic bulbs grown underground. Essential for most cuisine. Planted in fall and harvested in following spring/summer',
+        plantIndoors: 'n/a', 
+        daysToGerminate: 'n/a', 
+        transplantDate: 'Direct sow in fall', 
+        daysToMaturity: 300,
+        harvest: 'Dig up bulbs in summer when one third of the leaves become dry and lose their green color. Shake off soil, and cure whole plants dry in a warm, shady place for two weeks before trimming and storing the garlic bulbs.', 
+        sunRequirement: 'Sunny', 
+        spacing: 6,
+        companionPlants: ['Tomato', 'Apple', 'Apricot', 'Plum', 'Cherry', 'Pear', 'Peach', 'Raspberry'],
+        perennial: false, 
+        img: 'https://gardenerspath.com/wp-content/uploads/2019/12/How-to-Grow-Garlic-FB-Image.jpg', 
+        icon: '' 
+    },
+    {
+        name: 'Chives',
+        description: 'Grow indoors or outdoors for year-round onion flavoring. Use chopped leaves and young flowers to add flavor and decorative garnish to salads.',
+        plantIndoors: 60, 
+        daysToGerminate: 14, 
+        transplantDate: 'After last frost, or grow indoors', 
+        daysToMaturity: 80,
+        harvest: 'Use scissors to gather handfuls of leaves from early spring onward. Rinse, pat dry, and snip or cut into smaller pieces.', 
+        sunRequirement: 'Full Sun to partial afternoon shade', 
+        spacing: 8,
+        companionPlants: ['Carrot', 'Apple', 'Garlic', 'Onion'],
+        perennial: false, 
+        img: 'https://d1nw62gticy6e9.cloudfront.net/uploads/Organic-Standard-Chives.jpg', 
+        icon: '' 
     },
     {
         name: '',
@@ -102,6 +147,8 @@ const Crops = [
         spacing: 0,
         companionPlants: [],
         perennial: false, 
+        img: '', 
+        icon: '' 
     },
 
 ];

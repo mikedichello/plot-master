@@ -24,6 +24,7 @@ export default class ViewAllPlants extends Component {
 				</ul>
 				<div>
 					<h1>{this.state.currentCrop.name}</h1>
+					{/* <img src={`${this.state.currentCrop.img}`} /> */}
 					<h2>{this.state.currentCrop.description}</h2>
 					<h3>Germinates in {this.state.currentCrop.daysToGerminate} days</h3>
 					<h3>Days to Maturity: {this.state.currentCrop.daysToMaturity}</h3>
