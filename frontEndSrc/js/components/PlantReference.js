@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Crops from '../../../public/js/Crops.js'
 
-export default class ViewAllPlants extends Component {
+export default class PlantReference extends Component {
 	state = {
 		allCrops: Crops,
 		currentCrop: {

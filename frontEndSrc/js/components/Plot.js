@@ -8,6 +8,8 @@ export default class Plot extends Component {
 		currentSubplot: [],
 		currentSubplotId:[],
 		currentPlotId:[],
+		currentPlot: [],
+		title:'title',
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -97,6 +99,7 @@ export default class Plot extends Component {
 			body: JSON.stringify({
 				height: this.state.height,
 				width: this.state.width,
+				title: this.state.title,
 				subPlot: subPlots,
 			}),
 			method: 'POST',
@@ -112,6 +115,7 @@ export default class Plot extends Component {
 				this.setState({
 					height: 0,
 					width: 0,
+					title: "title",
 					plots: [...this.state.plots, jsonedPlot],
 				});
 			});
@@ -135,11 +139,18 @@ export default class Plot extends Component {
 						onChange={this.handleChange}
 						id="width"
 					/>
+					<input
+						type="text"
+						value={this.state.title}
+						onChange={this.handleChange}
+						id='title'
+						/>
 					<input type="submit" />
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
 						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
+							<h4>{plot.title}</h4>
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
@@ -157,7 +168,7 @@ export default class Plot extends Component {
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 							<div className='plantInfo'>
-								{this.state.currentSubplot.length!== 0 ? 
+								{true ? 
 								(<ul>
 									<li>{this.state.currentSubplot.background}</li>
 									{/* <li>{this.state.currentSubplot.plantName}</li>
