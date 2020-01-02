@@ -5,12 +5,16 @@ class PlantChart extends Component{
 	constructor (props) {
 		super(props)
 		this.state = {
-			plants: []
+			plants: [],
+			viewMode: false,
+			currentPlant: null
 		}
 	}
 
+	//import data from seed file instead
+
 	componentDidMount () {
-		axios.get('http://localhost:3000/api/plots')
+		axios.get('http://localhost:3000/api/plants')
 		.then(response => {
 			this.setState({
 				plants: response.data
@@ -18,10 +22,35 @@ class PlantChart extends Component{
 		})
 	}
 
+	viewPlantDetails = (plant, event) => {
+		this.setState({
+			viewMode: !this.state.viewMode,
+			currentPlant: event.target
+		})
+	}
+
 	render() { 
 			return (
 				<div className = 'chartContainer'>
 					<h2>My Plant Chart</h2>
+					{/* get rid of this */}
+					{this.state.viewMode} ? 
+						<h3>{this.state.currentPlant}</h3>
+						<ul>
+							<li>Description: {this.state.currentPlant.description}</li>
+							<li>When to Plant Indoors: {this.state.currentPlant.plantIndoors}</li>
+							<li>Days to Germination: {this.state.currentPlant.daysToGerminate}</li>
+							<li>When to Transplant Outdoors: {this.state.currentPlant.transplantDate}</li>
+							<li>Days to Maturity: {this.state.currentPlant.daysToMaturity}</li>
+							<li>Harvest Date: {this.state.currentPlant.harvestDate}</li>
+							<li>Sun Requirements: {this.state.currentPlant.sunRequirement}</li>
+							<li>Spacing Recommendation: {this.state.currentPlant.spacing} inches</li>
+							<li>Recommended Companion Plants: {this.state.currentPlant.companionPlants.map((plant, i) => {
+								return(<p>{plant}</p>)
+							})}</li>
+							<li>Type: {this.state.currentPlant.perennial ? 'Perennial' : 'Annual'}</li>
+						</ul>
+					:
 					<table>
 						<tr>
 							<th>Plant Name</th>
@@ -41,7 +70,7 @@ class PlantChart extends Component{
 					{this.state.plants.map((plant, i) => {
 						return(
 							<tr>
-								<td>{plant.name}</td>
+								<td onClick={this.viewPlantDetails}>{plant.name}</td>
 								<td className={plant.name} January></td>
 								<td className={plant.name} February></td>
 								<td className={plant.name} March></td>
