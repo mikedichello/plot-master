@@ -78,4 +78,6 @@ const Crops = [
     //     perennial: false, 
     // },
 
-]
+];
+
+export default Crops;
