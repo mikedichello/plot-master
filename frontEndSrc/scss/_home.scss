@@ -2,7 +2,14 @@
 	display: flex;
 	flex-flow: row nowrap;
 	margin-top: 20px;
+	img {
+		width: auto;
+		height: 300px;
+	}
 	p {
 		margin: 10px;
+		color: #49a010;
+		font-size: 1.2em;
+		line-height: 1.4em;
 	}
 }

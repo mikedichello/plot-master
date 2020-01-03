@@ -6,7 +6,7 @@ export default class Home extends Component {
 			<React.Fragment>
 				<h1 className="page-header">Welcome to Plot Master</h1>
 				<div className="home-container">
-					<img src={'../img/maskGroup.png'} width="500px" alt="garden beds" />
+					<img src={'../img/maskGroup.png'} alt="garden beds" />
 					<p>
 						Plot Master is the ultimate garden design tool for any planting
 						space. Create your custom-sized plot, choose your plants, and view a

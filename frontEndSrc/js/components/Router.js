@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
 import Home from './Home';
-import ViewAllPlots from './ViewAllPlots';
 import Plot from './Plot';
 import PlantingChart from './PlantChart';
 import PlantReference from './PlantReference';
