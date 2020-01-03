@@ -45,7 +45,7 @@ export default class PlantingChart extends Component {
 				<h3 className="sub-header" style={{ textAlign: 'center' }}>
 					Click plant name for details
 				</h3>
-				<div>
+				<div className="plant-list-container">
 					<div className="plant-list">
 						{this.state.crops.map((crop, index) => {
 							return (
@@ -56,9 +56,9 @@ export default class PlantingChart extends Component {
 					<div className="plant-calendar">
 						{this.state.currentDetails !== null ? (
 							<div>
-								<div style={{ display: 'flex' }} className="months">
+								<div className="months">
 									{months.map((month, index) => {
-										return <div className={month}>{month}</div>;
+										return <div className="month-single">{month}</div>;
 									})}
 								</div>
 								<div style={{ display: 'flex' }}>
@@ -67,7 +67,9 @@ export default class PlantingChart extends Component {
 											<div
 												style={{ height: '20px' }}
 												className={
-													this.state.germinate === index ? 'germinate' : ''
+													this.state.germinate === index
+														? 'germinate germinate-active'
+														: 'germinate'
 												}
 											></div>
 										);
@@ -81,8 +83,8 @@ export default class PlantingChart extends Component {
 												className={
 													this.state.germinate + 1 <= index &&
 													this.state.daysToMaturity >= index
-														? 'growth'
-														: ''
+														? 'growth growth-active'
+														: 'growth'
 												}
 											></div>
 										);
@@ -95,8 +97,8 @@ export default class PlantingChart extends Component {
 												style={{ height: '20px' }}
 												className={
 													this.state.daysToMaturity + 1 <= index && index <= 8
-														? 'harvest'
-														: ''
+														? 'harvest harvest-active'
+														: 'harvest'
 												}
 											></div>
 										);

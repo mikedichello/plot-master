@@ -1,0 +1,39 @@
+.plant-list-container {
+	display: flex;
+	.plant-list {
+		width: 20vw;
+	}
+	.plant-calendar {
+		width: 80vw;
+		.months {
+			display: flex;
+			justify-content: space-evenly;
+			.month-single {
+				border: 1px solid red;
+				width: calc(100% / 12);
+				text-align: center;
+			}
+		}
+		.germinate {
+			width: calc(100% / 12);
+			border: 1px solid;
+		}
+		.germinate-active {
+			background: yellowgreen;
+		}
+		.growth {
+			width: calc(100% / 12);
+			border: 1px solid;
+		}
+		.growth-active {
+			background: lime;
+		}
+		.harvest {
+			width: calc(100% / 12);
+			border: 1px solid;
+		}
+		.harvest-active {
+			background: fuchsia;
+		}
+	}
+}
