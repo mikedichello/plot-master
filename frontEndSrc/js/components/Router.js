@@ -42,10 +42,13 @@ class MainRouter extends Component {
 								src={'../img/crops.svg'}
 								alt="plot master crop"
 							/>
-							<h1 className="logo-type">Plot Master</h1>
+							<a href="/">
+								<h1 className="logo-type">Plot Master</h1>
+							</a>
 						</div>
 						<nav className="navbar-light bg-light row">
 							<NavLink
+								exact
 								to="/"
 								activeClassName="is-active"
 								className="nav-item m-2"
@@ -82,7 +85,7 @@ class MainRouter extends Component {
 							</NavLink>
 						</nav>
 					</header>
-					<Route exact path="/" component={Home} />
+					<Route path="/" exact component={Home} />
 					<Route path="/my-plots" component={Plot} />
 					<Route path="/planting-chart" component={PlantingChart} />
 					<Route path="/plant-reference" component={PlantReference} />
