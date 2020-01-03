@@ -136,6 +136,21 @@ const Crops = [
         icon: '' 
     },
     {
+        name: 'Cilantro',
+        description: 'Widely used in cuisines from around the world. Plants are most often harvested in the leafy stage of their development (cilantro) or the mature seed stage (coriander). Roots, flowers, and mmature seeds are also tasty. Plant monthly successions. Difficult to start in hot weather- sow in shade, or keep soil covered and cool until seedlings emerge. Self-sows in cool weather',
+        plantIndoors: 0, 
+        daysToGerminate: 0, 
+        transplantDate: '', 
+        daysToMaturity: 0,
+        harvest: '', 
+        sunRequirement: '', 
+        spacing: 0,
+        companionPlants: [],
+        perennial: false, 
+        img: '', 
+        icon: '' 
+    },
+    {
         name: '',
         description: '',
         plantIndoors: 0, 

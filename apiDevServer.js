@@ -5,7 +5,7 @@ const app = express();
 const db = mongoose.connection;
 
 // Environment Variables
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/plots';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/plots2';
 const PORT = process.env.PORT || 8000;
 
 // Connect to Mongo
