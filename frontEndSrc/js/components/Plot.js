@@ -6,10 +6,10 @@ export default class Plot extends Component {
 		height: 0,
 		width: 0,
 		currentSubplot: [],
-		currentSubplotId:[],
-		currentPlotId:[],
+		currentSubplotId: [],
+		currentPlotId: [],
 		currentPlot: [],
-		title:'title',
+		title: 'title',
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -17,7 +17,7 @@ export default class Plot extends Component {
 			.then(response => response.json())
 			.then(plots =>
 				this.setState({
-					plots: plots
+					plots: plots,
 				})
 			);
 	};
@@ -26,46 +26,56 @@ export default class Plot extends Component {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	plantSelection = (event) => {
+	plantSelection = event => {
 		event.preventDefault();
-		let plot = this.state.plots[this.state.currentPlotId]
-		console.log(plot)
-		plot.subPlot[this.state.currentSubplotId].background=event.target.style.backgroundColor
+		let plot = this.state.plots[this.state.currentPlotId];
+		console.log(plot);
+
+		// Refactor this to work with the incoming plant from the Crops data ?
+		// Find a way to grab the icon from the current target. and into the plant icont, in the subplot
+		// Might not be able to do the background color
+
+		plot.subPlot[this.state.currentSubplotId].plantName =
+			event.target.style.backgroundColor;
 		fetch('/api/plots/' + plot._id, {
-			body:JSON.stringify({subPlot:plot.subPlot}),
+			body: JSON.stringify({ subPlot: plot.subPlot }),
 			method: 'PUT',
 			headers: {
-				'Accept': 'application/json, text/plain, */*',
-				'Content-Type': 'application/json'
-			}
+				Accept: 'application/json, text/plain, */*',
+				'Content-Type': 'application/json',
+			},
 		})
-		.then(updatedPlot=>updatedPlot.json())
-		.then(jsonedPlot=> {
-			fetch('/api/plots/')
-			.then(response=>response.json())
-			.then(plots => {
-				this.setState({plots:plots, currentSubplot:[],currentPlotId:[],currentSubplotId:[]})
-			})
-		})
+			.then(updatedPlot => updatedPlot.json())
+			.then(jsonedPlot => {
+				fetch('/api/plots/')
+					.then(response => response.json())
+					.then(plots => {
+						this.setState({
+							plots: plots,
+							currentSubplot: [],
+							currentPlotId: [],
+							currentSubplotId: [],
+						});
+					});
+			});
 	};
 
-	plotSelection = (event) => {
+	plotSelection = event => {
 		event.preventDefault();
-		console.log(event.target.id)
-		console.log(this.state.currentSubplot)
-		
+		console.log(event.target.id);
+		console.log(this.state.currentSubplot);
+
 		this.setState({
 			currentSubplot: event.target,
-			currentSubplotId: event.target.id
+			currentSubplotId: event.target.id,
 		});
 	};
 
-	bigPlot = (index) => {
-
+	bigPlot = index => {
 		this.setState({
-			currentPlotId: index
+			currentPlotId: index,
 		});
-	}
+	};
 
 	deletePlot = (id, index) => {
 		fetch('/api/plots/' + id, {
@@ -78,7 +88,6 @@ export default class Plot extends Component {
 				],
 			});
 		});
-	
 	};
 	newPlot = event => {
 		event.preventDefault();
@@ -88,7 +97,6 @@ export default class Plot extends Component {
 				key: i,
 				height: '50px',
 				width: '50px',
-				background: this.state.plotBackground,
 				plantName: null,
 				plantDescription: null,
 				harvestTime: null,
@@ -115,15 +123,15 @@ export default class Plot extends Component {
 				this.setState({
 					height: 0,
 					width: 0,
-					title: "title",
+					title: 'title',
 					plots: [...this.state.plots, jsonedPlot],
 				});
 			});
 	};
 	render() {
 		return (
-			<div>
-				<h2>My Plot</h2>
+			<React.Fragment>
+				<h2 className="page-header">My Plot</h2>
 				<form onSubmit={this.newPlot}>
 					<p>Enter height and width in feet</p>
 					<label htmlFor="height">Height</label>
@@ -144,40 +152,58 @@ export default class Plot extends Component {
 						type="text"
 						value={this.state.title}
 						onChange={this.handleChange}
-						id='title'
-						/>
+						id="title"
+					/>
 					<input type="submit" />
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
 						<div>
 							<h4>{plot.title}</h4>
-						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
-							{plot.subPlot.map((subplot, index) => {
-								return (
-									<div
-										className="subplot"
-										onClick={this.state.currentSubplot.length===0 ? this.plotSelection : this.plantSelection }
-										id={subplot.key}
-										style={{
-											width: subplot.width,
-											height: subplot.height,
-											backgroundColor: subplot.background,
-										}}
-									></div>
-								);
-							})}
+							<div
+								className="plot"
+								onClick={() => this.bigPlot(index)}
+								id={index}
+								style={{
+									width: plot.width * 50,
+									display: 'flex',
+									flexWrap: 'wrap',
+								}}
+							>
+								{plot.subPlot.map((subplot, index) => {
+									return (
+										<div
+											className="subplot"
+											onClick={
+												this.state.currentSubplot.length === 0
+													? this.plotSelection
+													: this.plantSelection
+											}
+											id={subplot.key}
+											style={{
+												width: subplot.width,
+												height: subplot.height,
+											}}
+										></div>
+									);
+								})}
 							</div>
-							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
-							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
-							<div className='plantInfo'>
-								
-							</div>
+							<button onClick={() => this.deletePlot(plot._id, index)}>
+								Delete
+							</button>
+							<div
+								onClick={this.plantSelection}
+								style={{
+									width: '50px',
+									height: '50px',
+									backgroundColor: 'yellow',
+								}}
+							></div>
+							<div className="plantInfo"></div>
 						</div>
 					);
 				})}
-			</div>
-			
+			</React.Fragment>
 		);
 	}
 }
