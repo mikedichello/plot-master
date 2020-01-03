@@ -14,3 +14,36 @@
 		}
 	}
 }
+
+.available-plant-list {
+	// display: inline-flex;
+	// width: 100%;
+	// overflow: auto;
+	// padding: 10px;
+	display: flex;
+	overflow: auto;
+	.select-crop {
+		border: 1px dotted #534f52;
+		background: white;
+		// margin: 5px 10px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		padding: 20px;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-evenly;
+		img {
+			width: 100px;
+		}
+		p {
+			color: #534f52;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+	// .select-crop:first-child {
+	// 	margin-left: 10px;
+	// }
+	// .select-crop:last-child {
+	// 	margin-right: 20px;
+	// }
+}

@@ -392,21 +392,23 @@ const Crops = [
 		img: 'https://edge.bonnieplants.com/www/uploads/20180920004156/catnip.jpg',
 		icon: 'https://image.flaticon.com/icons/png/512/2372/2372974.png',
 	},
-	{
-		name: '',
-		description: '',
-		plantIndoors: 0,
-		daysToGerminate: 0,
-		transplantDate: '',
-		daysToMaturity: 0,
-		harvest: '',
-		sunRequirement: '',
-		spacing: 0,
-		companionPlants: [],
-		perennial: false,
-		img: '',
-		icon: '',
-	},
+
+	// COMMENTING IT OUT BECAUSE WE ARE GETTING A BLANK OBJ IN THE FRONT_END
+	// {
+	// 	name: '',
+	// 	description: '',
+	// 	plantIndoors: 0,
+	// 	daysToGerminate: 0,
+	// 	transplantDate: '',
+	// 	daysToMaturity: 0,
+	// 	harvest: '',
+	// 	sunRequirement: '',
+	// 	spacing: 0,
+	// 	companionPlants: [],
+	// 	perennial: false,
+	// 	img: '',
+	// 	icon: '',
+	// },
 ];
 
 export default Crops;

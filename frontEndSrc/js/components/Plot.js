@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Crops from '../../../public/js/Crops.js';
 
 export default class Plot extends Component {
 	state = {
@@ -173,6 +174,7 @@ export default class Plot extends Component {
 								{plot.subPlot.map((subplot, index) => {
 									return (
 										<div
+											key={index}
 											className="subplot"
 											onClick={
 												this.state.currentSubplot.length === 0
@@ -191,14 +193,24 @@ export default class Plot extends Component {
 							<button onClick={() => this.deletePlot(plot._id, index)}>
 								Delete
 							</button>
-							<div
+							{/* <div
 								onClick={this.plantSelection}
 								style={{
 									width: '50px',
 									height: '50px',
 									backgroundColor: 'yellow',
 								}}
-							></div>
+							></div> */}
+							<div className="available-plant-list">
+								{Crops.map((crop, index) => {
+									return (
+										<div className="select-crop" key={index}>
+											<img src={crop.icon} />
+											<p>{crop.name}</p>
+										</div>
+									);
+								})}
+							</div>
 							<div className="plantInfo"></div>
 						</div>
 					);

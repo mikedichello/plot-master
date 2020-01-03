@@ -6,12 +6,12 @@ export default class Footer extends Component {
 			<React.Fragment>
 				<div className="footer">
 					<h4 className="footer-text">
-						Made with
+						Made with{' '}
 						<img
 							className="footer-image"
 							src={'https://image.flaticon.com/icons/png/512/148/148836.png'}
 							alt=""
-						/>
+						/>{' '}
 						by Group #4: Jane, Mike, David, & Leo
 					</h4>
 				</div>
