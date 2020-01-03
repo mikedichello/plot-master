@@ -19,21 +19,44 @@
 			border: 1px solid;
 		}
 		.germinate-active {
-			background: yellowgreen;
+			background: rgb(154, 204, 54);
 		}
 		.growth {
 			width: calc(100% / 12);
 			border: 1px solid;
 		}
 		.growth-active {
-			background: lime;
+			background: rgb(0, 204, 0);
 		}
 		.harvest {
 			width: calc(100% / 12);
 			border: 1px solid;
 		}
 		.harvest-active {
-			background: fuchsia;
+			background: rgb(0, 255, 179);
+		}
+		.calendar-key {
+			ul {
+				margin-top: 40px;
+				li {
+					margin-bottom: 30px;
+					display: flex;
+				}
+			}
+			.legend-square {
+				margin-left: 20px;
+				width: 20px;
+				height: 20px;
+			}
+			.legend-germinate {
+				background: rgb(154, 204, 54);
+			}
+			.legend-growth {
+				background: rgb(0, 204, 0);
+			}
+			.legend-harvest {
+				background: rgb(0, 255, 179);
+			}
 		}
 	}
 }

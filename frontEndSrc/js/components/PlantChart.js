@@ -46,6 +46,7 @@ export default class PlantingChart extends Component {
 					Click plant name for details
 				</h3>
 				<div className="plant-list-container">
+					<h3 className="sub-header">Available Plants</h3>
 					<div className="plant-list">
 						{this.state.crops.map((crop, index) => {
 							return (
@@ -55,7 +56,7 @@ export default class PlantingChart extends Component {
 					</div>
 					<div className="plant-calendar">
 						{this.state.currentDetails !== null ? (
-							<div>
+							<React.Fragment>
 								<div className="months">
 									{months.map((month, index) => {
 										return <div className="month-single">{month}</div>;
@@ -104,7 +105,23 @@ export default class PlantingChart extends Component {
 										);
 									})}
 								</div>
-							</div>
+								<div className="calendar-key">
+									<ul>
+										<li>
+											Germinate ={' '}
+											<div className=" legend-square legend-germinate"></div>
+										</li>
+										<li>
+											Growth ={' '}
+											<div className=" legend-square legend-growth"></div>
+										</li>
+										<li>
+											Harvest ={' '}
+											<div className=" legend-square legend-harvest"></div>
+										</li>
+									</ul>
+								</div>
+							</React.Fragment>
 						) : (
 							<div>
 								<h3 className="sub-header">Select a plant</h3>
