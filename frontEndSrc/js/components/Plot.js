@@ -133,6 +133,7 @@ export default class Plot extends Component {
 		return (
 			<React.Fragment>
 				<h2 className="page-header">My Plot</h2>
+				<h3 className="sub-header">Create A New Plot</h3>
 				<form onSubmit={this.newPlot}>
 					<p>Enter height and width in feet</p>
 					<label htmlFor="height">Height</label>
@@ -157,6 +158,7 @@ export default class Plot extends Component {
 					/>
 					<input type="submit" />
 				</form>
+				<hr />
 				{this.state.plots.map((plot, index) => {
 					return (
 						<div>
