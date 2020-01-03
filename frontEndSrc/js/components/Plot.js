@@ -134,7 +134,7 @@ export default class Plot extends Component {
 			<React.Fragment>
 				<h2 className="page-header">My Plot</h2>
 				<h3 className="sub-header">Create A New Plot</h3>
-				<form onSubmit={this.newPlot}>
+				<form className="create-new-form" onSubmit={this.newPlot}>
 					<p>Enter height and width in feet</p>
 					<label htmlFor="height">Height</label>
 					<input
@@ -150,6 +150,7 @@ export default class Plot extends Component {
 						onChange={this.handleChange}
 						id="width"
 					/>
+					<label>Title</label>
 					<input
 						type="text"
 						value={this.state.title}
@@ -159,6 +160,7 @@ export default class Plot extends Component {
 					<input type="submit" />
 				</form>
 				<hr />
+				<h3 className="sub-header">Saved Plots</h3>
 				{this.state.plots.map((plot, index) => {
 					return (
 						<div>
@@ -192,7 +194,10 @@ export default class Plot extends Component {
 									);
 								})}
 							</div>
-							<button onClick={() => this.deletePlot(plot._id, index)}>
+							<button
+								className="delete-btn"
+								onClick={() => this.deletePlot(plot._id, index)}
+							>
 								Delete
 							</button>
 							{/* <div
@@ -206,6 +211,7 @@ export default class Plot extends Component {
 							<div className="available-plant-list">
 								{Crops.map((crop, index) => {
 									return (
+										// Add the onClick event somewhere in here, it will take the iron url, and set it to the background-image in the plot, but store the plant's data somewhere else as well?
 										<div className="select-crop" key={index}>
 											<img src={crop.icon} />
 											<p>{crop.name}</p>

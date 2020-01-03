@@ -1,6 +1,64 @@
 // .subplot:hover {
 // 	background-color: lightsalmon;
 // }
+.create-new-form {
+	p {
+		margin-bottom: 10px;
+	}
+	input[type='submit'] {
+		outline: none;
+		height: 40px;
+		text-align: center;
+		width: 130px;
+		border-radius: 40px;
+		background: #fff;
+		border: 2px solid;
+		color: #49a010;
+		letter-spacing: 1px;
+		text-shadow: 0;
+		font: {
+			size: 12px;
+			weight: bold;
+		}
+		cursor: pointer;
+		transition: all 0.25s ease;
+		&:hover {
+			color: white;
+			background: #49a010;
+		}
+		&:active {
+			//letter-spacing: 2px;
+			letter-spacing: 2px;
+		}
+	}
+}
+
+.delete-btn {
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 130px;
+	border-radius: 40px;
+	background: #fff;
+	border: 2px solid;
+	color: #832006;
+	letter-spacing: 1px;
+	text-shadow: 0;
+	font: {
+		size: 12px;
+		weight: bold;
+	}
+	cursor: pointer;
+	transition: all 0.25s ease;
+	&:hover {
+		color: white;
+		background: #832006;
+	}
+	&:active {
+		//letter-spacing: 2px;
+		letter-spacing: 2px;
+	}
+}
 
 // GENERAL PLOT STYLE
 .plot {
@@ -15,6 +73,7 @@
 	}
 }
 
+// PLANT LIST IN PLOT COMPONENT
 .available-plant-list {
 	// display: inline-flex;
 	// width: 100%;
@@ -23,6 +82,7 @@
 	display: flex;
 	overflow: auto;
 	.select-crop {
+		cursor: pointer;
 		border: 1px dotted #534f52;
 		background: white;
 		// margin: 5px 10px;
@@ -39,6 +99,9 @@
 			text-align: center;
 			text-transform: uppercase;
 		}
+	}
+	.select-crop:hover {
+		background: #dfdfdf;
 	}
 	// .select-crop:first-child {
 	// 	margin-left: 10px;
