@@ -6,6 +6,7 @@ import Plot from './Plot';
 import PlantingChart from './PlantChart';
 import PlantReference from './PlantReference';
 import SignUpForm from './SignUpForm';
+import Footer from './Footer';
 import LogInForm from './LogInForm';
 import LogOut from './LogOut';
 
@@ -99,6 +100,7 @@ class MainRouter extends Component {
 					<div className="app-container">
 						<Route path="/my-plots" component={Plot} />
 					</div>
+					<Footer />
 				</HashRouter>
 			</React.Fragment>
 		);
