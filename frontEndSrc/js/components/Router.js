@@ -91,14 +91,14 @@ class MainRouter extends Component {
 					>
 						<Route path="/" exact component={Home} />
 
-						<Route path="/planting-chart" component={PlantingChart} />
-						<Route path="/plant-reference" component={PlantReference} />
 						<Route path="/login" component={LogInForm} />
 						<Route path="/signup" component={SignUpForm} />
 						<Route path="/logout" component={LogOut} />
 					</div>
 					<div className="app-container">
 						<Route path="/my-plots" component={Plot} />
+						<Route path="/planting-chart" component={PlantingChart} />
+						<Route path="/plant-reference" component={PlantReference} />
 					</div>
 					<Footer />
 				</HashRouter>
