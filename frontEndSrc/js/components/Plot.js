@@ -132,74 +132,91 @@ export default class Plot extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h2 className="page-header">My Plot</h2>
-				<h3 className="sub-header">Create A New Plot</h3>
+				<h2 className="page-header" style={{ textAlign: 'center' }}>
+					My Plot App
+				</h2>
+				<h3 className="sub-header" style={{ textAlign: 'center' }}>
+					Create A New Plot
+				</h3>
 				<form className="create-new-form" onSubmit={this.newPlot}>
 					<p>Enter height and width in feet</p>
-					<label htmlFor="height">Height</label>
-					<input
-						type="number"
-						value={this.state.height}
-						onChange={this.handleChange}
-						id="height"
-					/>
-					<label htmlFor="width">Width</label>
-					<input
-						type="number"
-						value={this.state.width}
-						onChange={this.handleChange}
-						id="width"
-					/>
-					<label>Title</label>
-					<input
-						type="text"
-						value={this.state.title}
-						onChange={this.handleChange}
-						id="title"
-					/>
+					<span>
+						<input
+							className="basic-slide"
+							type="number"
+							value={this.state.height}
+							onChange={this.handleChange}
+							id="height"
+						/>
+						<label htmlFor="height">Height</label>
+					</span>
+					<span>
+						<input
+							className="basic-slide"
+							type="number"
+							value={this.state.width}
+							onChange={this.handleChange}
+							id="width"
+						/>
+						<label htmlFor="width">Width</label>
+					</span>
+					<span>
+						<input
+							className="basic-slide"
+							type="text"
+							value={this.state.title}
+							onChange={this.handleChange}
+							id="title"
+						/>
+						<label>Title</label>
+					</span>
 					<input type="submit" />
 				</form>
 				<hr />
 				<h3 className="sub-header">Saved Plots</h3>
 				{this.state.plots.map((plot, index) => {
 					return (
-						<div>
-							<h4>{plot.title}</h4>
-							<div
-								className="plot"
-								onClick={() => this.bigPlot(index)}
-								id={index}
-								style={{
-									width: plot.width * 50,
-									display: 'flex',
-									flexWrap: 'wrap',
-								}}
-							>
-								{plot.subPlot.map((subplot, index) => {
-									return (
-										<div
-											key={index}
-											className="subplot"
-											onClick={
-												this.state.currentSubplot.length === 0
-													? this.plotSelection
-													: this.plantSelection
-											}
-											id={subplot.key}
-											style={{
-												width: subplot.width,
-												height: subplot.height,
-											}}
-										></div>
-									);
-								})}
+						<React.Fragment>
+							<div className="plot-container">
+								<div
+									className="plot"
+									onClick={() => this.bigPlot(index)}
+									id={index}
+									style={{
+										width: plot.width * 50,
+										display: 'flex',
+										flexWrap: 'wrap',
+									}}
+								>
+									{plot.subPlot.map((subplot, index) => {
+										return (
+											<div
+												key={index}
+												className="subplot"
+												onClick={
+													this.state.currentSubplot.length === 0
+														? this.plotSelection
+														: this.plantSelection
+												}
+												id={subplot.key}
+												style={{
+													width: subplot.width,
+													height: subplot.height,
+												}}
+											></div>
+										);
+									})}
+								</div>
+								<div className="plot-info">
+									<h4 className="sub-header">{plot.title}</h4>
+									<button
+										className="delete-btn"
+										onClick={() => this.deletePlot(plot._id, index)}
+									>
+										Delete
+									</button>
+								</div>
 							</div>
-							<button
-								className="delete-btn"
-								onClick={() => this.deletePlot(plot._id, index)}
-							>
-								Delete
-							</button>
 							{/* <div
 								onClick={this.plantSelection}
 								style={{
@@ -220,7 +237,8 @@ export default class Plot extends Component {
 								})}
 							</div>
 							<div className="plantInfo"></div>
-						</div>
+							<hr />
+						</React.Fragment>
 					);
 				})}
 			</React.Fragment>
