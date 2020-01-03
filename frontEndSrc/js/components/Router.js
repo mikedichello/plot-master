@@ -10,49 +10,78 @@ import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';
 import LogOut from './LogOut';
 
-
 class MainRouter extends Component {
-	constructor () {
-		super()
+	constructor() {
+		super();
 		this.state = {
 			username: '',
 			password: '',
-			isLoggedIn: false
-		}
-	}	
-	componentDidMount () {
-		if(localStorage.token) {
+			isLoggedIn: false,
+		};
+	}
+	componentDidMount() {
+		if (localStorage.token) {
 			this.setState({
-				isLoggedIn: true
-			})
+				isLoggedIn: true,
+			});
 		} else {
 			this.setState({
-				isLoggedIn: false
-			})
+				isLoggedIn: false,
+			});
 		}
 	}
 
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<HashRouter>
-					<nav className="navbar-light bg-light row">
-						<NavLink to="/" className="nav-item m-2">
-							Home
-						</NavLink>
-						<NavLink to="/my-plots" className="nav-item m-2">
-							My Plots
-						</NavLink>
-						<NavLink to="/planting-chart" className="nav-item m-2">
-							Planting Chart
-						</NavLink>
-						<NavLink to="/plant-reference" className="nav-item m-2">
-							Reference Guide
-						</NavLink>
-						<NavLink to="/login" className="nav-item m-2">
-							Login
-						</NavLink>
-					</nav>
+					<header>
+						<div className="app-logo">
+							<img
+								className="logo-icon"
+								src={'../img/crops.svg'}
+								alt="plot master crop"
+							/>
+							<h1 className="logo-type">Plot Master</h1>
+						</div>
+						<nav className="navbar-light bg-light row">
+							<NavLink
+								to="/"
+								activeClassName="is-active"
+								className="nav-item m-2"
+							>
+								Home
+							</NavLink>
+							<NavLink
+								to="/my-plots"
+								activeClassName="is-active"
+								className="nav-item m-2"
+							>
+								My Plots
+							</NavLink>
+							<NavLink
+								to="/planting-chart"
+								activeClassName="is-active"
+								className="nav-item m-2"
+							>
+								Planting Chart
+							</NavLink>
+							<NavLink
+								to="/plant-reference"
+								activeClassName="is-active"
+								className="nav-item m-2"
+							>
+								Reference Guide
+							</NavLink>
+							<NavLink
+								to="/login"
+								activeClassName="is-active"
+								className="nav-item m-2"
+							>
+								Login
+							</NavLink>
+						</nav>
+					</header>
 					<Route exact path="/" component={Home} />
 					<Route path="/my-plots" component={Plot} />
 					<Route path="/planting-chart" component={PlantingChart} />
@@ -61,7 +90,7 @@ class MainRouter extends Component {
 					<Route path="/signup" component={SignUpForm} />
 					<Route path="/logout" component={LogOut} />
 				</HashRouter>
-			</div>	
+			</React.Fragment>
 		);
 	}
 }
