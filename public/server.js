@@ -2,6 +2,20 @@ const http = require('http'); // The node http module allow you to create server
 const fs = require('fs'); // The node file system module allows you to create files and interact with file system
 const path = require('path'); // path allows you to get the path of a folder etc.
 const PORT = 8080;
+const express = require('express')
+const parser = require('body-parser')
+const cors = require('cors')
+const passport = require('./config/passport'())
+
+const userController = require('./controllers/User')
+
+const app = express()
+
+app.use(cors())
+app.use(parser.json())
+app.use(passport.initialize());
+
+app.use('/users', userController)
 
 http.createServer(function (req, res) {
 	let filePath = '.' + req.url;
