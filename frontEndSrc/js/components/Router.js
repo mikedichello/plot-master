@@ -6,10 +6,32 @@ import ViewAllPlots from './ViewAllPlots';
 import Plot from './Plot';
 import PlantingChart from './PlantChart';
 import PlantReference from './PlantReference';
+import SignUpForm from './SignUpForm';
+import LogInForm from './LogInForm';
+import LogOut from './LogOut';
 
 
 class MainRouter extends Component {
-	state = {};
+	constructor () {
+		super()
+		this.state = {
+			username: '',
+			password: '',
+			isLoggedIn: false
+		}
+	}	
+	componentDidMount () {
+		if(localStorage.token) {
+			this.setState({
+				isLoggedIn: true
+			})
+		} else {
+			this.setState({
+				isLoggedIn: false
+			})
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -39,9 +61,11 @@ class MainRouter extends Component {
 					<Route path="/all-plots" component={ViewAllPlots} />
 					<Route path="/planting-chart" component={PlantingChart} />
 					<Route path="/plant-reference" component={PlantReference} />
-
+					<Route path="/login" component={LogInForm} />
+					<Route path="/signup" component={SignUpForm} />
+					<Route path="/logout" component={LogOut} />
 				</HashRouter>
-			</div>
+			</div>	
 		);
 	}
 }
