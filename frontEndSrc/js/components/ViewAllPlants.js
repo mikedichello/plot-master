@@ -9,8 +9,6 @@ export default class ViewAllPlants extends Component {
 			companionPlants: [],
 		}
 	}
-
-
 	render() {
 		return (
 			<div>
@@ -23,8 +21,8 @@ export default class ViewAllPlants extends Component {
 					})}
 				</ul>
 				<div>
+					<img></img>
 					<h1>{this.state.currentCrop.name}</h1>
-					{/* <img src={this.state.currentCrop.img} /> */}
 					<h2>{this.state.currentCrop.description}</h2>
 					<h3>Germinates in {this.state.currentCrop.daysToGerminate} days</h3>
 					<h3>Days to Maturity: {this.state.currentCrop.daysToMaturity}</h3>
@@ -33,7 +31,7 @@ export default class ViewAllPlants extends Component {
 					<ul>Companion plants:
 						{this.state.currentCrop.companionPlants.map((crop, index) => {
 							return (
-								<li>{crop}</li>
+								<li key={index}>{crop}</li>
 							)
 						})}
 					</ul>
