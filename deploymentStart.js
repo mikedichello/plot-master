@@ -5,7 +5,7 @@ const app = express();
 const db = mongoose.connection;
 
 // Environment Variables
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/plots';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/plots2';
 const PORT = process.env.PORT || 8080;
 
 // Connect to Mongo
@@ -34,8 +34,8 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-const todosController = require('./backEndSrc/controllers/plots.js');
-app.use('/api/plots', todosController);
+const plotsController = require('./backEndSrc/controllers/plots.js');
+app.use('/api/plots', plotsController);
 
 // this will catch any route that doesn't exist
 app.get('*', (req, res) => {
