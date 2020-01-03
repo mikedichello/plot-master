@@ -9,6 +9,7 @@ export default class Plot extends Component {
 		currentSubplotId:[],
 		currentPlotId:[],
 		currentPlot: [],
+		title:'title',
 		plotBackground: 'brown',
 	};
 	componentDidMount = () => {
@@ -98,6 +99,7 @@ export default class Plot extends Component {
 			body: JSON.stringify({
 				height: this.state.height,
 				width: this.state.width,
+				title: this.state.title,
 				subPlot: subPlots,
 			}),
 			method: 'POST',
@@ -113,6 +115,7 @@ export default class Plot extends Component {
 				this.setState({
 					height: 0,
 					width: 0,
+					title: "title",
 					plots: [...this.state.plots, jsonedPlot],
 				});
 			});
@@ -122,6 +125,7 @@ export default class Plot extends Component {
 			<div>
 				<h2>My Plot</h2>
 				<form onSubmit={this.newPlot}>
+					<p>Enter height and width in feet</p>
 					<label htmlFor="height">Height</label>
 					<input
 						type="number"
@@ -136,10 +140,18 @@ export default class Plot extends Component {
 						onChange={this.handleChange}
 						id="width"
 					/>
+					<input
+						type="text"
+						value={this.state.title}
+						onChange={this.handleChange}
+						id='title'
+						/>
 					<input type="submit" />
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
+						<div>
+							<h4>{plot.title}</h4>
 						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
 							{plot.subPlot.map((subplot, index) => {
 								return (
@@ -155,23 +167,17 @@ export default class Plot extends Component {
 									></div>
 								);
 							})}
+							</div>
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 							<div className='plantInfo'>
-								{true ? 
-								(<ul>
-									<li>{this.state.currentSubplot.background}</li>
-									{/* <li>{this.state.currentSubplot.plantName}</li>
-									<li>{this.state.currentSubplot.plantDescription}</li>
-									<li>{this.state.currentSubplot.plantingTime}</li>
-									<li>{this.state.currentSubplot.harvestTime}</li> */}
-								</ul>)
-								:''}
+								
 							</div>
 						</div>
 					);
 				})}
 			</div>
+			
 		);
 	}
 }

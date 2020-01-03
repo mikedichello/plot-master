@@ -18,12 +18,16 @@ export default class PlantReference extends Component {
 				<ul>
 					{this.state.allCrops.map((crop, index) => {
 						return(
-							<li  key={index} onClick={() => this.setState({currentCrop: crop})}>{crop.name}</li>
+							<div>
+								<li  key={index} onClick={() => this.setState({currentCrop: crop})}>{crop.name}</li>
+								<img src={crop.icon} />
+							</div>
 						)
 					})}
 				</ul>
 				<div>
 					<h1>{this.state.currentCrop.name}</h1>
+					<img src={this.state.currentCrop.img} />
 					<h2>{this.state.currentCrop.description}</h2>
 					<h3>Germinates in {this.state.currentCrop.daysToGerminate} days</h3>
 					<h3>Days to Maturity: {this.state.currentCrop.daysToMaturity}</h3>

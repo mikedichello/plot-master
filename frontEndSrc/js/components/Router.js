@@ -40,11 +40,8 @@ class MainRouter extends Component {
 						<NavLink to="/" className="nav-item m-2">
 							Home
 						</NavLink>
-						<NavLink to="/my-garden-plot" className="nav-item m-2">
-							My Garden Plot
-						</NavLink>
-						<NavLink to="/all-plots" className="nav-item m-2">
-							View All Plots
+						<NavLink to="/my-plots" className="nav-item m-2">
+							My Plots
 						</NavLink>
 						<NavLink to="/planting-chart" className="nav-item m-2">
 							Planting Chart
@@ -57,8 +54,7 @@ class MainRouter extends Component {
 						</NavLink>
 					</nav>
 					<Route exact path="/" component={Home} />
-					<Route path="/my-garden-plot" component={Plot} />
-					<Route path="/all-plots" component={ViewAllPlots} />
+					<Route path="/my-plots" component={Plot} />
 					<Route path="/planting-chart" component={PlantingChart} />
 					<Route path="/plant-reference" component={PlantReference} />
 					<Route path="/login" component={LogInForm} />
