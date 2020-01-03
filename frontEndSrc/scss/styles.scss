@@ -2,12 +2,31 @@
 
 @import 'reset';
 
-// Global Styling
+// GLOBAL STYLING
 body {
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	background-image: url('../img/checkerboard-cross.png');
 }
 
+.app-container {
+	width: 960px;
+	margin: 20px auto;
+}
+
+.page-header {
+	color: #486a11;
+	text-transform: uppercase;
+	font-size: 1.5em;
+}
+// END OF GLOBAL STYLING
+
+/*
+* STYLES FOR COMPONENTS
+* 1 - create a new scss file 
+* 2 = import any time you'll like to style a component
+*/
+
+@import 'header';
 @import 'home';
 @import 'garden';
 @import 'plot';

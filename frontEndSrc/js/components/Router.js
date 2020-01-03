@@ -85,13 +85,20 @@ class MainRouter extends Component {
 							</NavLink>
 						</nav>
 					</header>
-					<Route path="/" exact component={Home} />
-					<Route path="/my-plots" component={Plot} />
-					<Route path="/planting-chart" component={PlantingChart} />
-					<Route path="/plant-reference" component={PlantReference} />
-					<Route path="/login" component={LogInForm} />
-					<Route path="/signup" component={SignUpForm} />
-					<Route path="/logout" component={LogOut} />
+					<div
+						// className={
+						// 	window.location.hash === '/my-plots' ? '' : 'app-container'
+						// }
+						className={'app-container'}
+					>
+						<Route path="/" exact component={Home} />
+						<Route path="/my-plots" component={Plot} />
+						<Route path="/planting-chart" component={PlantingChart} />
+						<Route path="/plant-reference" component={PlantReference} />
+						<Route path="/login" component={LogInForm} />
+						<Route path="/signup" component={SignUpForm} />
+						<Route path="/logout" component={LogOut} />
+					</div>
 				</HashRouter>
 			</React.Fragment>
 		);
