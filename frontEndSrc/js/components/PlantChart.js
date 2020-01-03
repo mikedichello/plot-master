@@ -30,18 +30,18 @@ export default class PlantingChart extends Component{
 						return(
 							<tr>
 								<td onClick={this.viewPlantDetails}>{plant.name}</td>
-								<td className={plant.name} January></td>
-								<td className={plant.name} February></td>
-								<td className={plant.name} March></td>
-								<td className={plant.name} April></td>
-								<td className={plant.name} May></td>
-								<td className={plant.name} June></td>
-								<td className={plant.name} July></td>
-								<td className={plant.name} August></td>
-								<td className={plant.name} September></td>
-								<td className={plant.name} October></td>
-								<td className={plant.name} November></td>
-								<td className={plant.name} December></td>
+								<td className={plant.name + " January"} ></td>
+								<td className={plant.name + " February"} ></td>
+								<td className={plant.name + " March"} ></td>
+								<td className={plant.name + " April"} ></td>
+								<td className={plant.name + " May"} ></td>
+								<td className={plant.name + " June"} ></td>
+								<td className={plant.name + " July"} ></td>
+								<td className={plant.name + " August"} ></td>
+								<td className={plant.name + " September"} ></td>
+								<td className={plant.name + " October"} ></td>
+								<td className={plant.name + " November"} ></td>
+								<td className={plant.name + " December"} ></td>
 							</tr>
 						)
 					}

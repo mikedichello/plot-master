@@ -125,6 +125,7 @@ export default class Plot extends Component {
 			<div>
 				<h2>My Plot</h2>
 				<form onSubmit={this.newPlot}>
+					<p>Enter height and width in feet</p>
 					<label htmlFor="height">Height</label>
 					<input
 						type="number"
@@ -149,8 +150,9 @@ export default class Plot extends Component {
 				</form>
 				{this.state.plots.map((plot, index) => {
 					return (
-						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
+						<div>
 							<h4>{plot.title}</h4>
+						<div className="plot" onClick={()=>this.bigPlot(index)} id={index} style={{ width: plot.width * 50, display: "flex", flexWrap:"wrap"}}>
 							{plot.subPlot.map((subplot, index) => {
 								return (
 									<div
@@ -165,23 +167,17 @@ export default class Plot extends Component {
 									></div>
 								);
 							})}
+							</div>
 							<button onClick={()=>this.deletePlot(plot._id,index)}>Delete</button>
 							<div onClick={this.plantSelection} style={{width:'50px', height:'50px', backgroundColor:'yellow'}}></div>
 							<div className='plantInfo'>
-								{true ? 
-								(<ul>
-									<li>{this.state.currentSubplot.background}</li>
-									{/* <li>{this.state.currentSubplot.plantName}</li>
-									<li>{this.state.currentSubplot.plantDescription}</li>
-									<li>{this.state.currentSubplot.plantingTime}</li>
-									<li>{this.state.currentSubplot.harvestTime}</li> */}
-								</ul>)
-								:''}
+								
 							</div>
 						</div>
 					);
 				})}
 			</div>
+			
 		);
 	}
 }
