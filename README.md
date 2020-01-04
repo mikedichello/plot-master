@@ -5,9 +5,12 @@ Users also may view a custom-generated chart of all plants in their plot along w
 
 
 ## Project Link
-[Plot Master](add url)
-Username: EXAMPLEUSER
-Password: 1234
+### [Plot Master](www.link.com)
+
+#### Example Login:
+> Username: EXAMPLEUSER
+>
+> Password: 1234
 
 
 ## Contributors
@@ -24,7 +27,7 @@ Password: 1234
 * [MongoDB](https://www.mongodb.com/) - Database
 * [Mongoose](https://mongoosejs.com/) - Data modeling
 * HTML5
-* CSS
+* CSS, [SASS](https://sass-lang.com/)
 * User Authorization:
     * [JSON Web Tokens](https://jwt.io/)
     * [Passport](http://www.passportjs.org/)
@@ -36,8 +39,10 @@ Password: 1234
     * [Github](https://github.com/) - Version control
     * [Heroku](https://www.heroku.com/) - Deployment platform
     
-    
-## User Stories
+   
+## Our Process
+
+#### User Stories
 * The user should be able to create a garden plot with custom dimensions and plantings
 * The user should be able to save created garden plots to their user profile 
 * The user should be able to edit or delete a saved garden plot
@@ -45,7 +50,16 @@ Password: 1234
 * The user should be able to view a reference page with information about all plants
 * The user should be able to sign up for a user account, log in, and log out
 
-## Our Process
+#### Wireframing:
+![wireframe](https://i.imgur.com/24SncGg.png "wireframe")
+
+#### Visual Brainstorming:
+![moodboard](https://i.imgur.com/hiojRYP.jpg "moodboard")
+
+#### Design Mockups:
+![homepage mockup](https://i.imgur.com/aPZYF17.png "homepage mockup")
+![plot mockup](https://i.imgur.com/St81O6B.png "plot mockup")
+![planting chart mockup](https://i.imgur.com/9JwTM3b.png "planting chart mockup")
 
 
 ## Challenges/Future Goals
