@@ -5,7 +5,7 @@ Users also may view a custom-generated chart of all plants in their plot along w
 
 
 ## Project Link
-### [Plot Master](www.link.com)
+### [Plot Master](https://plot-master.herokuapp.com/#/)
 
 #### Example Login:
 > Username: EXAMPLEUSER
