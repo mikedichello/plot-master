@@ -8,6 +8,7 @@ export default class PlantReference extends Component {
 			name: 'CLICK CROP TO VIEW INFORMATION',
 			companionPlants: [],
 		},
+		showDetails: null,
 	};
 
 	render() {
@@ -21,7 +22,9 @@ export default class PlantReference extends Component {
 								<div
 									key={index}
 									className="single-plant"
-									onClick={() => this.setState({ currentCrop: crop })}
+									onClick={() =>
+										this.setState({ currentCrop: crop, showDetails: true })
+									}
 								>
 									<p> {crop.name}</p>
 									<img src={crop.icon} />
@@ -29,20 +32,30 @@ export default class PlantReference extends Component {
 							);
 						})}
 					</div>
-					<div>
-						<h1>{this.state.currentCrop.name}</h1>
-						<img src={this.state.currentCrop.img} />
-						<h2>{this.state.currentCrop.description}</h2>
-						<h3>Germinates in {this.state.currentCrop.daysToGerminate} days</h3>
-						<h3>Days to Maturity: {this.state.currentCrop.daysToMaturity}</h3>
-						<h3>Harvesting Tips: {this.state.currentCrop.harvest}</h3>
-						<h3>Thrives best in {this.state.currentCrop.sunRequirement}</h3>
-						<ul>
-							Companion plants:
-							{this.state.currentCrop.companionPlants.map((crop, index) => {
-								return <li>{crop}</li>;
-							})}
-						</ul>
+					<div className="crop-information">
+						{this.state.showDetails !== null ? (
+							<React.Fragment>
+								<h3 className="sub-header">{this.state.currentCrop.name}</h3>
+								<img width="300" src={this.state.currentCrop.img} />
+								<h2>{this.state.currentCrop.description}</h2>
+								<h3>
+									Germinates in {this.state.currentCrop.daysToGerminate} days
+								</h3>
+								<h3>
+									Days to Maturity: {this.state.currentCrop.daysToMaturity}
+								</h3>
+								<h3>Harvesting Tips: {this.state.currentCrop.harvest}</h3>
+								<h3>Thrives best in {this.state.currentCrop.sunRequirement}</h3>
+								<ul>
+									Companion plants:
+									{this.state.currentCrop.companionPlants.map((crop, index) => {
+										return <li>{crop}</li>;
+									})}
+								</ul>
+							</React.Fragment>
+						) : (
+							<h3 className="sub-header">{this.state.currentCrop.name}</h3>
+						)}
 					</div>
 				</div>
 			</React.Fragment>
