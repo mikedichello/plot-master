@@ -27,17 +27,21 @@ export default class Plot extends Component {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	plantSelection = event => {
-		event.preventDefault();
+	plantSelection = (index) => {
+		// event.preventDefault();
 		let plot = this.state.plots[this.state.currentPlotId];
+		let icon = Crops[index].icon
+		console.log(icon)
 		console.log(plot);
+		console.log(plot.subPlot)
+		console.log(plot.subPlot[this.state.currentSubplotId].icon)
 
 		// Refactor this to work with the incoming plant from the Crops data ?
 		// Find a way to grab the icon from the current target. and into the plant icont, in the subplot
 		// Might not be able to do the background color
 
-		plot.subPlot[this.state.currentSubplotId].plantName =
-			event.target.style.backgroundColor;
+		plot.subPlot[this.state.currentSubplotId].icon=icon
+		console.log(plot.subPlot[this.state.currentSubplotId].icon)
 		fetch('/api/plots/' + plot._id, {
 			body: JSON.stringify({ subPlot: plot.subPlot }),
 			method: 'PUT',
@@ -63,8 +67,6 @@ export default class Plot extends Component {
 
 	plotSelection = event => {
 		event.preventDefault();
-		console.log(event.target.id);
-		console.log(this.state.currentSubplot);
 
 		this.setState({
 			currentSubplot: event.target,
@@ -102,6 +104,7 @@ export default class Plot extends Component {
 				plantDescription: null,
 				harvestTime: null,
 				plantingTime: null,
+				icon: null,
 			});
 		}
 		fetch('/api/plots', {
@@ -190,20 +193,17 @@ export default class Plot extends Component {
 								>
 									{plot.subPlot.map((subplot, index) => {
 										return (
-											<div
+											<img
 												key={index}
 												className="subplot"
-												onClick={
-													this.state.currentSubplot.length === 0
-														? this.plotSelection
-														: this.plantSelection
-												}
+												src={subplot.icon}
+												onClick={this.plotSelection}
 												id={subplot.key}
 												style={{
 													width: subplot.width,
 													height: subplot.height,
 												}}
-											></div>
+											></img>
 										);
 									})}
 								</div>
@@ -229,7 +229,9 @@ export default class Plot extends Component {
 								{Crops.map((crop, index) => {
 									return (
 										// Add the onClick event somewhere in here, it will take the iron url, and set it to the background-image in the plot, but store the plant's data somewhere else as well?
-										<div className="select-crop" key={index}>
+										<div 
+											onClick={()=>this.plantSelection(index)}
+											className="select-crop" key={index}>
 											<img src={crop.icon} />
 											<p>{crop.name}</p>
 										</div>
