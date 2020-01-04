@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class SignUpForm extends Component {
-	state = {
-		username: '',
-		password: '',
-		isLoggedIn: null,
-	};
+	constructor(props) {
+		super(props)
+	  }
 	componentDidMount() {
 		if (localStorage.token) {
 			this.setState({
@@ -37,11 +35,13 @@ class SignUpForm extends Component {
 				});
 			})
 			.catch(err => console.log(err));
+			this.props.history.push("/");
+
 	};
 	render() {
 		return (
 			<div className="auth-container">
-				{this.state.isLoggedIn ? (
+				{this.props.isLoggedIn ? (
 					<div className="page-header">howdy</div>
 				) : (
 					<h2 className="page-header">Sign Up</h2>

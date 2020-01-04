@@ -76,13 +76,22 @@ class MainRouter extends Component {
 							>
 								Reference Guide
 							</NavLink>
+							{this.state.isLoggedIn ? 							
+								<NavLink
+									to="/logout"
+									activeClassName="is-active"
+									className="nav-item m-2"
+								>
+								Logout
+							</NavLink> : 
 							<NavLink
-								to="/login"
-								activeClassName="is-active"
-								className="nav-item m-2"
-							>
-								Login
-							</NavLink>
+							to="/login"
+							activeClassName="is-active"
+							className="nav-item m-2"
+						>
+							Login
+						</NavLink>
+						}
 						</nav>
 					</header>
 					<div
@@ -91,9 +100,9 @@ class MainRouter extends Component {
 					>
 						<Route path="/" exact component={Home} />
 
-						<Route path="/login" component={LogInForm} />
-						<Route path="/signup" component={SignUpForm} />
-						<Route path="/logout" component={LogOut} />
+						<Route path="/login" component={LogInForm} isLoggedIn={this.state.isLoggedIn}/>
+						<Route path="/signup" component={SignUpForm} isLoggedIn={this.state.isLoggedIn}/>
+						<Route path="/logout" component={LogOut} isLoggedIn={this.state.isLoggedIn}/>
 					</div>
 					<div className="app-container">
 						<Route path="/my-plots" component={Plot} />

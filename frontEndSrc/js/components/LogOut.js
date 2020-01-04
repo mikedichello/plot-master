@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class LogOut extends Component {
-	state = {
-		username: '',
-		password: '',
-		isLoggedIn: null,
-	};
+	constructor(props) {
+		super(props)
+	  }
 	componentDidMount() {
 		if (localStorage.token) {
 			this.setState({
@@ -19,13 +17,15 @@ class LogOut extends Component {
 		}
 	}
 
-	handleLogOut = () => {
+	handleLogOut = (e) => {
+		e.preventDefault();
 		this.setState({
 			username: '',
 			password: '',
 			isLoggedIn: false,
 		});
 		localStorage.clear();
+		this.props.history.push("/");
 	};
 
 	render() {
