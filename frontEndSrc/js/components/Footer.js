@@ -12,7 +12,7 @@ export default class Footer extends Component {
 							src={'https://image.flaticon.com/icons/png/512/148/148836.png'}
 							alt=""
 						/>{' '}
-						by Group #4: Jane, Mike, David, & Leo
+						by Group #3: Jane, Mike, David, & Leo
 					</h4>
 				</div>
 			</React.Fragment>
