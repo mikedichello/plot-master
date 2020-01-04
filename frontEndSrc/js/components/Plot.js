@@ -13,7 +13,7 @@ export default class Plot extends Component {
 		title: 'title',
 		plotBackground: 'brown',
 		plantInfoBoolean: false,
-		currentPlantIndex: 0
+		currentPlantIndex: 0,
 	};
 	componentDidMount = () => {
 		fetch('/api/plots')
@@ -29,33 +29,33 @@ export default class Plot extends Component {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	plantInfo = (index) => {
-		if(this.state.plantInfoBoolean===false) {
-			this.state.plantInfoBoolean=true
-		} else if (index===this.state.currentPlantIndex) {
-			this.state.plantInfoBoolean=false
+	plantInfo = index => {
+		if (this.state.plantInfoBoolean === false) {
+			this.state.plantInfoBoolean = true;
+		} else if (index === this.state.currentPlantIndex) {
+			this.state.plantInfoBoolean = false;
 		}
 
 		this.setState({
-			currentPlantIndex: index
-		})
-	}
+			currentPlantIndex: index,
+		});
+	};
 
-	plantSelection = (index) => {
+	plantSelection = index => {
 		// event.preventDefault();
 		let plot = this.state.plots[this.state.currentPlotId];
-		let icon = Crops[index].icon
-		console.log(icon)
+		let icon = Crops[index].icon;
+		console.log(icon);
 		console.log(plot);
-		console.log(plot.subPlot)
-		console.log(plot.subPlot[this.state.currentSubplotId].icon)
+		console.log(plot.subPlot);
+		console.log(plot.subPlot[this.state.currentSubplotId].icon);
 
 		// Refactor this to work with the incoming plant from the Crops data ?
 		// Find a way to grab the icon from the current target. and into the plant icont, in the subplot
 		// Might not be able to do the background color
 
-		plot.subPlot[this.state.currentSubplotId].icon=icon
-		console.log(plot.subPlot[this.state.currentSubplotId].icon)
+		plot.subPlot[this.state.currentSubplotId].icon = icon;
+		console.log(plot.subPlot[this.state.currentSubplotId].icon);
 		fetch('/api/plots/' + plot._id, {
 			body: JSON.stringify({ subPlot: plot.subPlot }),
 			method: 'PUT',
@@ -108,13 +108,13 @@ export default class Plot extends Component {
 	};
 	newPlot = event => {
 		event.preventDefault();
-		if(this.state.height>25 || this.state.width>25){
-			alert("Plot too large for database! try values below 25 ft")
+		if (this.state.height > 25 || this.state.width > 25) {
+			alert('Plot too large for database! try values below 25 ft');
 			this.setState({
-				width:0,
-				height:0
-			})
-			return
+				width: 0,
+				height: 0,
+			});
+			return;
 		}
 		let subPlots = [];
 		for (let i = 0; i < this.state.height * this.state.width; i++) {
@@ -150,7 +150,7 @@ export default class Plot extends Component {
 					height: 0,
 					width: 0,
 					title: 'title',
-					plots: [jsonedPlot,...this.state.plots ],
+					plots: [jsonedPlot, ...this.state.plots],
 				});
 			});
 	};
@@ -164,8 +164,9 @@ export default class Plot extends Component {
 					Create A New Plot
 				</h3>
 				<form className="create-new-form" onSubmit={this.newPlot}>
-					<p>Plots larger then 25ft in either dimension should be split up 
-						into two plots. eg. 30x15 can become two 15x15 plots.
+					<p>
+						Plots larger then 25ft in either dimension should be split up into
+						two plots. eg. 30x15 can become two 15x15 plots.
 					</p>
 					<span>
 						<input
@@ -205,40 +206,68 @@ export default class Plot extends Component {
 					return (
 						<React.Fragment>
 							<div className="plot-container">
-								<div
-									className="plot"
-									onClick={() => this.bigPlot(index)}
-									id={index}
-									style={{
-										width: plot.width * 50,
-										display: 'flex',
-										flexWrap: 'wrap',
-									}}
-								>
-									{plot.subPlot.map((subplot, index) => {
-										return (
-											<img
-												key={index}
-												className="subplot"
-												src={subplot.icon}
-												onClick={this.plotSelection}
-												id={subplot.key}
-												style={{
-													width: subplot.width,
-													height: subplot.height,
-												}}
-											></img>
-										);
-									})}
-								</div>
-								<div className="plot-info">
-									<h4 className="sub-header">{plot.title}</h4>
-									<button
-										className="delete-btn"
-										onClick={() => this.deletePlot(plot._id, index)}
+								<div className="wrapper-helper">
+									<div
+										className="plot"
+										onClick={() => this.bigPlot(index)}
+										id={index}
+										style={{
+											width: plot.width * 50,
+											display: 'flex',
+											flexWrap: 'wrap',
+										}}
 									>
-										Delete
-									</button>
+										{plot.subPlot.map((subplot, index) => {
+											return (
+												<img
+													key={index}
+													className="subplot"
+													src={subplot.icon}
+													onClick={this.plotSelection}
+													id={subplot.key}
+													style={{
+														width: subplot.width,
+														height: subplot.height,
+													}}
+												></img>
+											);
+										})}
+									</div>
+									<div className="plot-info">
+										<h4 className="sub-header">{plot.title}</h4>
+										<button
+											className="delete-btn"
+											onClick={() => this.deletePlot(plot._id, index)}
+										>
+											Delete
+										</button>
+									</div>
+								</div>
+								<div className="plantInfo">
+									{this.state.plantInfoBoolean ? (
+										<ul>
+											<li>
+												<span>Name:</span>{' '}
+												{Crops[this.state.currentPlantIndex].name}
+											</li>
+											<li>
+												<span>Description:</span>{' '}
+												{Crops[this.state.currentPlantIndex].description}
+											</li>
+											<li>
+												<span>Days to Germinate</span>{' '}
+												{Crops[this.state.currentPlantIndex].daysToGerminate}{' '}
+												days
+											</li>
+											<li>
+												<span>Days to Maturity</span>{' '}
+												{Crops[this.state.currentPlantIndex].daysToMaturity}{' '}
+												days
+											</li>
+										</ul>
+									) : (
+										''
+									)}
 								</div>
 							</div>
 							{/* <div
@@ -253,25 +282,19 @@ export default class Plot extends Component {
 								{Crops.map((crop, index) => {
 									return (
 										// Add the onClick event somewhere in here, it will take the iron url, and set it to the background-image in the plot, but store the plant's data somewhere else as well?
-										<div 
-											onClick={()=>this.plantSelection(index)}
-											className="select-crop" key={index}>
+										<div
+											onClick={() => this.plantSelection(index)}
+											className="select-crop"
+											key={index}
+										>
 											<img src={crop.icon} />
 											<p>{crop.name}</p>
-											<p onClick={()=>this.plantInfo(index)}>Info</p>
+											<p onClick={() => this.plantInfo(index)}>Info</p>
 										</div>
 									);
 								})}
 							</div>
-							<div className="plantInfo">
-								{this.state.plantInfoBoolean ? 
-								<ul>
-									<li>Name: {Crops[this.state.currentPlantIndex].name}</li>
-									<li>Description: {Crops[this.state.currentPlantIndex].description}</li>
-									<li>Days to Germinate {Crops[this.state.currentPlantIndex].daysToGerminate} days</li>
-									<li>Days to Maturity {Crops[this.state.currentPlantIndex].daysToMaturity} days</li>
-									 </ul> : ''}
-							</div>
+
 							<hr />
 						</React.Fragment>
 					);

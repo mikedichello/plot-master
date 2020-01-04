@@ -115,25 +115,42 @@
 .plot-container {
 	display: flex;
 	margin-bottom: 20px;
-	.plot {
-		box-sizing: content-box;
-		border: 3px solid #832006;
-		.subplot {
-			cursor: pointer;
-			background-color: #95624a;
-			&:hover {
-				background-color: lightcoral;
+	.wrapper-helper {
+		width: 70%;
+		display: flex;
+		.plot {
+			box-sizing: content-box;
+			border: 3px solid #832006;
+			.subplot {
+				cursor: pointer;
+				background-color: #95624a;
+				&:hover {
+					background-color: lightcoral;
+				}
+			}
+		}
+		.plot-info {
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: space-between;
+			margin-left: 30px;
+			.sub-header {
+				text-transform: uppercase;
+				font-size: 2em;
 			}
 		}
 	}
-	.plot-info {
-		display: flex;
-		flex-flow: column nowrap;
-		justify-content: space-between;
-		margin-left: 30px;
-		.sub-header {
-			text-transform: uppercase;
-			font-size: 2em;
+	.plantInfo {
+		width: 30%;
+		ul {
+			li {
+				margin-bottom: 20px;
+				color: #49a010;
+				span {
+					color: #665857;
+					text-transform: uppercase;
+				}
+			}
 		}
 	}
 }
@@ -156,7 +173,7 @@
 		padding: 20px;
 		display: flex;
 		flex-flow: column nowrap;
-		justify-content: space-evenly;
+		justify-content: space-between;
 		img {
 			width: 100px;
 		}
@@ -164,6 +181,12 @@
 			color: #534f52;
 			text-align: center;
 			text-transform: uppercase;
+		}
+		p:last-child {
+			&:hover {
+				color: #49a010;
+				border-bottom: 2px solid #49a010;
+			}
 		}
 	}
 	.select-crop:hover {
