@@ -13,13 +13,26 @@ const months = [
 	'October',
 	'November',
 	'December',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
+	'',
 ];
+
 
 export default class PlantingChart extends Component {
 	state = {
 		crops: Crops,
 		currentDetails: null,
-		germinate: 2,
+		germinate: 4,
 		daysToMaturity: 0,
 		harvest: 0,
 	};
@@ -27,8 +40,8 @@ export default class PlantingChart extends Component {
 		event.preventDefault();
 		let crop = Crops[index];
 		let daysToMaturity =
-			this.state.germinate + Math.round(crop.daysToMaturity / 30);
-		let harvest = this.state.germinate + Math.round(crop.daysToMaturity / 30);
+			this.state.germinate + Math.round(crop.daysToMaturity / 15);
+		let harvest = this.state.germinate + Math.round(crop.daysToMaturity / 15);
 		this.setState({
 			currentDetails: crop,
 			daysToMaturity: daysToMaturity,
@@ -59,6 +72,8 @@ export default class PlantingChart extends Component {
 							<React.Fragment>
 								<div className="months">
 									{months.map((month, index) => {
+										if (index>11)
+										return
 										return <div className="month-single">{month}</div>;
 									})}
 								</div>
@@ -97,7 +112,7 @@ export default class PlantingChart extends Component {
 											<div
 												style={{ height: '20px' }}
 												className={
-													this.state.daysToMaturity + 1 <= index && index <= 8
+													this.state.daysToMaturity + 1 <= index && index <= 16
 														? 'harvest harvest-active'
 														: 'harvest'
 												}

@@ -12,6 +12,8 @@ export default class Plot extends Component {
 		currentPlot: [],
 		title: 'title',
 		plotBackground: 'brown',
+		plantInfoBoolean: false,
+		currentPlantIndex: 0
 	};
 	componentDidMount = () => {
 		fetch('/api/plots')
@@ -26,6 +28,18 @@ export default class Plot extends Component {
 	handleChange = event => {
 		this.setState({ [event.target.id]: event.target.value });
 	};
+
+	plantInfo = (index) => {
+		if(this.state.plantInfoBoolean===false) {
+			this.state.plantInfoBoolean=true
+		} else if (index===this.state.currentPlantIndex) {
+			this.state.plantInfoBoolean=false
+		}
+
+		this.setState({
+			currentPlantIndex: index
+		})
+	}
 
 	plantSelection = (index) => {
 		// event.preventDefault();
@@ -94,6 +108,14 @@ export default class Plot extends Component {
 	};
 	newPlot = event => {
 		event.preventDefault();
+		if(this.state.height>25 || this.state.width>25){
+			alert("Plot too large for database! try values below 25 ft")
+			this.setState({
+				width:0,
+				height:0
+			})
+			return
+		}
 		let subPlots = [];
 		for (let i = 0; i < this.state.height * this.state.width; i++) {
 			subPlots.push({
@@ -128,7 +150,7 @@ export default class Plot extends Component {
 					height: 0,
 					width: 0,
 					title: 'title',
-					plots: [...this.state.plots, jsonedPlot],
+					plots: [jsonedPlot,...this.state.plots ],
 				});
 			});
 	};
@@ -142,7 +164,9 @@ export default class Plot extends Component {
 					Create A New Plot
 				</h3>
 				<form className="create-new-form" onSubmit={this.newPlot}>
-					<p>Enter height and width in feet</p>
+					<p>Plots larger then 25ft in either dimension should be split up 
+						into two plots. eg. 30x15 can become two 15x15 plots.
+					</p>
 					<span>
 						<input
 							className="basic-slide"
@@ -234,11 +258,20 @@ export default class Plot extends Component {
 											className="select-crop" key={index}>
 											<img src={crop.icon} />
 											<p>{crop.name}</p>
+											<p onClick={()=>this.plantInfo(index)}>Info</p>
 										</div>
 									);
 								})}
 							</div>
-							<div className="plantInfo"></div>
+							<div className="plantInfo">
+								{this.state.plantInfoBoolean ? 
+								<ul>
+									<li>Name: {Crops[this.state.currentPlantIndex].name}</li>
+									<li>Description: {Crops[this.state.currentPlantIndex].description}</li>
+									<li>Days to Germinate {Crops[this.state.currentPlantIndex].daysToGerminate} days</li>
+									<li>Days to Maturity {Crops[this.state.currentPlantIndex].daysToMaturity} days</li>
+									 </ul> : ''}
+							</div>
 							<hr />
 						</React.Fragment>
 					);
