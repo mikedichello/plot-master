@@ -59,11 +59,16 @@ export default class PlantingChart extends Component {
 					Click plant name for details
 				</h3>
 				<div className="plant-list-container">
-					<h3 className="sub-header">Available Plants</h3>
 					<div className="plant-list">
+						<h3 className="sub-header">Available Plants</h3>
 						{this.state.crops.map((crop, index) => {
 							return (
-								<div onClick={() => this.plantDetails(index)}>{crop.name}</div>
+								<div
+									onClick={() => this.plantDetails(index)}
+									className="plant-name-item"
+								>
+									<p>{crop.name}</p>
+								</div>
 							);
 						})}
 					</div>
@@ -81,7 +86,6 @@ export default class PlantingChart extends Component {
 									{months.map((month, index) => {
 										return (
 											<div
-												style={{ height: '20px' }}
 												className={
 													this.state.germinate === index
 														? 'germinate germinate-active'
@@ -95,7 +99,6 @@ export default class PlantingChart extends Component {
 									{months.map((month, index) => {
 										return (
 											<div
-												style={{ height: '20px' }}
 												className={
 													this.state.germinate + 1 <= index &&
 													this.state.daysToMaturity >= index
@@ -110,7 +113,6 @@ export default class PlantingChart extends Component {
 									{months.map((month, index) => {
 										return (
 											<div
-												style={{ height: '20px' }}
 												className={
 													this.state.daysToMaturity + 1 <= index && index <= 16
 														? 'harvest harvest-active'
@@ -121,6 +123,7 @@ export default class PlantingChart extends Component {
 									})}
 								</div>
 								<div className="calendar-key">
+									<h3 className="sub-header">Legend</h3>
 									<ul>
 										<li>
 											Germinate ={' '}
