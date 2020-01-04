@@ -36,29 +36,29 @@ export default class PlantReference extends Component {
 						{this.state.showDetails !== null ? (
 							<React.Fragment>
 								<div>
-									<h3 className="sub-header">{this.state.currentCrop.name}</h3>
+									<h3 className="page-header">{this.state.currentCrop.name}</h3>
 									<img width="300" src={this.state.currentCrop.img} />
 								</div>
-								<div>
+								<div className="plant-data">
 									<p>{this.state.currentCrop.description}</p>
 									<p>
-										<span>Germinates in</span>
+										<span>Germinates in: </span>
 										{this.state.currentCrop.daysToGerminate} days
 									</p>
 									<p>
-										<span>Days to Maturity:</span>
+										<span>Days to Maturity: </span>
 										{this.state.currentCrop.daysToMaturity}
 									</p>
 									<p>
-										<span>Harvesting Tips:</span>
+										<span>Harvesting Tips: </span>
 										{this.state.currentCrop.harvest}
 									</p>
 									<p>
-										<span>Thrives best in</span>
+										<span>Thrives best in: </span>
 										{this.state.currentCrop.sunRequirement}
 									</p>
+									<span style={{ marginBottom: 20 }}>Companion plants:</span>
 									<ul>
-										<span>Companion plants:</span>
 										{this.state.currentCrop.companionPlants.map(
 											(crop, index) => {
 												return <li>{crop}</li>;
@@ -68,7 +68,9 @@ export default class PlantReference extends Component {
 								</div>
 							</React.Fragment>
 						) : (
-							<h3 className="sub-header">{this.state.currentCrop.name}</h3>
+							<h3 className="sub-header" style={{ margin: 20 }}>
+								{this.state.currentCrop.name}
+							</h3>
 						)}
 					</div>
 				</div>

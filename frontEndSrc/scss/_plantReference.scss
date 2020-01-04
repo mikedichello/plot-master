@@ -31,5 +31,22 @@
 	}
 	.crop-information {
 		width: calc(100% - 180px);
+		display: flex;
+		div {
+			margin: 20px;
+		}
+		.plant-data {
+			p {
+				color: #49a010;
+				margin-bottom: 20px;
+			}
+			span {
+				text-transform: uppercase;
+				color: #665857;
+			}
+			ul li {
+				color: #49a010;
+			}
+		}
 	}
 }
