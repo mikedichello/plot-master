@@ -63,6 +63,7 @@ Users also may view a custom-generated chart of all plants in their plot along w
 
 
 ## Challenges/Future Goals
+* User authorization is functional, but not yet related to the Plots model. In the future we would like to create a relationship between the two models, so that plots are saved only for their users.
 * We originally planned to use a third-party API, Trefle, to pull in a larger database of plants. However, many information fields with this API were listed as "null", and it became simpler to just create our own data for our initial production release. In the future we would like to figure out a more scalable solution to increase the size of our database.
 * Another goal is to customize planting/harvesting time recommendations based off of a user's specified zipcode, using WeatherUnderground API's location-based frost dates.
 * We also would like to explore using React DnD to create a drag and drop interface for the plot creation component
