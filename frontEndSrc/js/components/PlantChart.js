@@ -46,11 +46,16 @@ export default class PlantingChart extends Component {
 					Click plant name for details
 				</h3>
 				<div className="plant-list-container">
-					<h3 className="sub-header">Available Plants</h3>
 					<div className="plant-list">
+						<h3 className="sub-header">Available Plants</h3>
 						{this.state.crops.map((crop, index) => {
 							return (
-								<div onClick={() => this.plantDetails(index)}>{crop.name}</div>
+								<div
+									onClick={() => this.plantDetails(index)}
+									className="plant-name-item"
+								>
+									<p>{crop.name}</p>
+								</div>
 							);
 						})}
 					</div>

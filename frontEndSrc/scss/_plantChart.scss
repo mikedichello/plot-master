@@ -2,6 +2,14 @@
 	display: flex;
 	.plant-list {
 		width: 20vw;
+		.plant-name-item {
+			margin-bottom: 10px;
+			cursor: pointer;
+			color: #de6d43;
+			p:hover {
+				color: #665857;
+			}
+		}
 	}
 	.plant-calendar {
 		width: 80vw;
@@ -9,25 +17,26 @@
 			display: flex;
 			justify-content: space-evenly;
 			.month-single {
-				border-left: 2px solid;
+				border-left: 2px dotted grey;
 				width: calc(100% / 12);
 				text-align: center;
 				font-size: 1em;
 				text-transform: uppercase;
 				margin: 10px 0;
+				color: #de6d43;
 			}
 			.month-single:last-child {
-				border-right: 2px solid;
+				border-right: 2px dotted grey;
 			}
 		}
 		.germinate {
 			width: calc(100% / 12);
-			border-left: 1px solid;
+			border-left: 1px dotted;
 			height: 20px;
 			margin: 10px 0;
 		}
 		.germinate:last-child {
-			border-right: 1px solid;
+			border-right: 1px dotted;
 		}
 		.germinate-active {
 			background: rgb(154, 204, 54);
@@ -35,12 +44,12 @@
 		}
 		.growth {
 			width: calc(100% / 12);
-			border-left: 1px solid;
+			border-left: 1px dotted;
 			height: 20px;
 			margin: 10px 0;
 		}
 		.growth:last-child {
-			border-right: 1px solid;
+			border-right: 1px dotted;
 		}
 		.growth-active {
 			background: rgb(0, 204, 0);
@@ -48,12 +57,12 @@
 		}
 		.harvest {
 			width: calc(100% / 12);
-			border-left: 1px solid;
+			border-left: 1px dotted;
 			height: 20px;
 			margin: 10px 0;
 		}
 		.harvest:last-child {
-			border-right: 1px solid;
+			border-right: 1px dotted;
 		}
 		.harvest-active {
 			background: rgb(0, 255, 179);
