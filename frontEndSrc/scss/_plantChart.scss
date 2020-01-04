@@ -1,0 +1,97 @@
+.plant-list-container {
+	display: flex;
+	.plant-list {
+		width: 20vw;
+		.plant-name-item {
+			margin-bottom: 10px;
+			cursor: pointer;
+			color: #de6d43;
+			p:hover {
+				color: #665857;
+			}
+		}
+	}
+	.plant-calendar {
+		width: 80vw;
+		.months {
+			display: flex;
+			justify-content: space-evenly;
+			.month-single {
+				border-left: 2px dotted grey;
+				width: calc(100% / 12);
+				text-align: center;
+				font-size: 1em;
+				text-transform: uppercase;
+				margin: 10px 0;
+				color: #de6d43;
+			}
+			.month-single:last-child {
+				border-right: 2px dotted grey;
+			}
+		}
+		.germinate {
+			width: calc(100% / 24);
+			border-left: 1px dotted;
+			height: 20px;
+			margin: 10px 0;
+		}
+		.germinate:last-child {
+			border-right: 1px dotted;
+		}
+		.germinate-active {
+			background: rgb(154, 204, 54);
+			border-radius: 20px;
+		}
+		.growth {
+			width: calc(100% / 24);
+			border-left: 1px dotted;
+			height: 20px;
+			margin: 10px 0;
+		}
+		.growth:last-child {
+			border-right: 1px dotted;
+		}
+		.growth-active {
+			background: rgb(0, 204, 0);
+			border-radius: 20px;
+		}
+		.harvest {
+			width: calc(100% / 24);
+			border-left: 1px dotted;
+			height: 20px;
+			margin: 10px 0;
+		}
+		.harvest:last-child {
+			border-right: 1px dotted;
+		}
+		.harvest-active {
+			background: rgb(0, 255, 179);
+			border-radius: 20px;
+		}
+		.calendar-key {
+			ul {
+				li {
+					color: #665857;
+					text-transform: capitalize;
+					font-size: 1.1em;
+					margin-bottom: 10px;
+					display: flex;
+				}
+			}
+			.legend-square {
+				margin-left: 20px;
+				width: 20px;
+				height: 20px;
+			}
+			.legend-germinate {
+				background: rgb(154, 204, 54);
+			}
+			.legend-growth {
+				background: rgb(0, 204, 0);
+			}
+			.legend-harvest {
+				background: rgb(0, 255, 179);
+			}
+		}
+	}
+}

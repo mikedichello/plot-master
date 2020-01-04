@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap');
+
+@import 'reset';
+
+// GLOBAL STYLING
+body {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	background-image: url('../img/checkerboard-cross.png');
+}
+
+.site-container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.app-container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.page-header {
+	color: #486a11;
+	text-transform: uppercase;
+	font-size: 2em;
+	margin-bottom: 5px;
+}
+
+.sub-header {
+	color: #49a010;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+	font-size: 1.4em;
+}
+// END OF GLOBAL STYLING
+
+/*
+* STYLES FOR COMPONENTS
+* 1 - create a new scss file 
+* 2 = import any time you'll like to style a component
+*/
+
+@import 'header';
+@import 'home';
+@import 'plot';
+@import 'plantChart';
+@import 'footer';

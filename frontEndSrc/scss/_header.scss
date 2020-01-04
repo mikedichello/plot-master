@@ -1,0 +1,39 @@
+header {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	.app-logo {
+		margin: 10px;
+		.logo-icon {
+			width: 55px;
+			height: auto;
+			margin-left: 64px;
+		}
+		a {
+			text-decoration: none;
+		}
+		.logo-type {
+			color: #486a11;
+			font-size: 2.5em;
+			text-transform: uppercase;
+		}
+	}
+	nav {
+		margin: 10px;
+		text-transform: uppercase;
+		a {
+			margin: 0 20px;
+			text-decoration: none;
+			color: #665857;
+		}
+		.is-active {
+			color: #486a11;
+			font-weight: 500;
+			border-bottom: 3px solid;
+		}
+		a:last-child {
+			margin-right: 0;
+		}
+	}
+}

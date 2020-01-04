@@ -1,0 +1,178 @@
+// .subplot:hover {
+// 	background-color: lightsalmon;
+// }
+.create-new-form {
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	p {
+		margin-bottom: 10px;
+	}
+	input[type='submit'] {
+		outline: none;
+		height: 40px;
+		text-align: center;
+		width: 130px;
+		border-radius: 40px;
+		background: #fff;
+		border: 2px solid;
+		color: #49a010;
+		letter-spacing: 1px;
+		text-shadow: 0;
+		font: {
+			size: 12px;
+			weight: bold;
+		}
+		cursor: pointer;
+		transition: all 0.25s ease;
+		&:hover {
+			color: white;
+			background: #49a010;
+		}
+		&:active {
+			//letter-spacing: 2px;
+			letter-spacing: 2px;
+		}
+	}
+	span {
+		position: relative;
+		display: inline-block;
+		margin: 30px 10px;
+	}
+	.basic-slide {
+		display: inline-block;
+		width: 215px;
+		padding: 10px 0 10px 15px;
+		background: #efefef;
+		border: 0;
+		border-radius: 3px;
+		outline: 0;
+		text-indent: 70px; // Arbitrary.
+		transition: all 0.3s ease-in-out;
+		&::-webkit-input-placeholder {
+			color: #efefef;
+			text-indent: 0;
+			font-weight: 300;
+		}
+		+ label {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 8px 15px;
+			text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+			background: #49a010;
+			color: white;
+			transition: all 0.3s ease-in-out;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+	}
+	.basic-slide:focus,
+	.basic-slide:active {
+		color: #49a010;
+		text-indent: 0;
+		background: #fff;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		&::-webkit-input-placeholder {
+			color: #aaa;
+		}
+		+ label {
+			transform: translateX(-100%);
+		}
+	}
+}
+
+.delete-btn {
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 130px;
+	border-radius: 40px;
+	background: #fff;
+	border: 2px solid;
+	color: #832006;
+	letter-spacing: 1px;
+	text-shadow: 0;
+	font: {
+		size: 12px;
+		weight: bold;
+	}
+	cursor: pointer;
+	transition: all 0.25s ease;
+	&:hover {
+		color: white;
+		background: #832006;
+	}
+	&:active {
+		//letter-spacing: 2px;
+		letter-spacing: 2px;
+	}
+}
+
+// GENERAL PLOT STYLE
+.plot-container {
+	display: flex;
+	margin-bottom: 20px;
+	.plot {
+		box-sizing: content-box;
+		border: 3px solid #832006;
+		.subplot {
+			cursor: pointer;
+			background-color: #95624a;
+			&:hover {
+				background-color: lightcoral;
+			}
+		}
+	}
+	.plot-info {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		margin-left: 30px;
+		.sub-header {
+			text-transform: uppercase;
+			font-size: 2em;
+		}
+	}
+}
+
+// PLANT LIST IN PLOT COMPONENT
+.available-plant-list {
+	// display: inline-flex;
+	// width: 100%;
+	// overflow: auto;
+	// padding: 10px;
+	display: flex;
+	overflow: auto;
+	margin-bottom: 20px;
+	.select-crop {
+		cursor: pointer;
+		border: 1px dotted #534f52;
+		background: white;
+		// margin: 5px 10px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		padding: 20px;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-evenly;
+		img {
+			width: 100px;
+		}
+		p {
+			color: #534f52;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+	.select-crop:hover {
+		background: #dfdfdf;
+	}
+	// .select-crop:first-child {
+	// 	margin-left: 10px;
+	// }
+	// .select-crop:last-child {
+	// 	margin-right: 20px;
+	// }
+}
