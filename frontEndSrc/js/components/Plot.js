@@ -30,6 +30,7 @@ export default class Plot extends Component {
 	};
 
 	plantInfo = index => {
+		event.preventDefault();
 		if (this.state.plantInfoBoolean === false) {
 			this.state.plantInfoBoolean = true;
 		} else if (index === this.state.currentPlantIndex) {
@@ -42,7 +43,7 @@ export default class Plot extends Component {
 	};
 
 	plantSelection = index => {
-		// event.preventDefault();
+		event.preventDefault();
 		let plot = this.state.plots[this.state.currentPlotId];
 		let icon = Crops[index].icon;
 		console.log(icon);
@@ -89,6 +90,7 @@ export default class Plot extends Component {
 	};
 
 	bigPlot = index => {
+		event.preventDefault();
 		this.setState({
 			currentPlotId: index,
 		});
@@ -108,51 +110,58 @@ export default class Plot extends Component {
 	};
 	newPlot = event => {
 		event.preventDefault();
-		if (this.state.height > 25 || this.state.width > 25) {
-			alert('Plot too large for database! try values below 25 ft');
+
+		if (
+			Number(this.state.height) > 25 ||
+			Number(this.state.width) > 25 ||
+			Number(this.state.height) < 0 || Number(this.state.height) < 0
+		) {
+			alert(
+				'Plot is too large or too negative for our database! try values below 25 ft but hopefully above zero'
+			);
 			this.setState({
 				width: 0,
 				height: 0,
 			});
-			return;
-		}
-		let subPlots = [];
-		for (let i = 0; i < this.state.height * this.state.width; i++) {
-			subPlots.push({
-				key: i,
-				height: '50px',
-				width: '50px',
-				plantName: null,
-				plantDescription: null,
-				harvestTime: null,
-				plantingTime: null,
-				icon: null,
-			});
-		}
-		fetch('/api/plots', {
-			body: JSON.stringify({
-				height: this.state.height,
-				width: this.state.width,
-				title: this.state.title,
-				subPlot: subPlots,
-			}),
-			method: 'POST',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json',
-			},
-		})
-			.then(createdPlot => {
-				return createdPlot.json();
-			})
-			.then(jsonedPlot => {
-				this.setState({
-					height: 0,
-					width: 0,
-					title: 'title',
-					plots: [jsonedPlot, ...this.state.plots],
+		} else {
+			let subPlots = [];
+			for (let i = 0; i < this.state.height * this.state.width; i++) {
+				subPlots.push({
+					key: i,
+					height: '50px',
+					width: '50px',
+					plantName: null,
+					plantDescription: null,
+					harvestTime: null,
+					plantingTime: null,
+					icon: null,
 				});
-			});
+			}
+			fetch('/api/plots', {
+				body: JSON.stringify({
+					height: this.state.height,
+					width: this.state.width,
+					title: this.state.title,
+					subPlot: subPlots,
+				}),
+				method: 'POST',
+				headers: {
+					Accept: 'application/json, text/plain, */*',
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(createdPlot => {
+					return createdPlot.json();
+				})
+				.then(jsonedPlot => {
+					this.setState({
+						height: 0,
+						width: 0,
+						title: 'title',
+						plots: [...this.state.plots, jsonedPlot],
+					});
+				});
+		}
 	};
 	render() {
 		return (
@@ -217,10 +226,10 @@ export default class Plot extends Component {
 											flexWrap: 'wrap',
 										}}
 									>
-										{plot.subPlot.map((subplot, index) => {
+										{plot.subPlot.map((subplot, index2) => {
 											return (
 												<img
-													key={index}
+													key={index2}
 													className="subplot"
 													src={subplot.icon}
 													onClick={this.plotSelection}
